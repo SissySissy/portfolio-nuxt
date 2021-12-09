@@ -1,7 +1,7 @@
 <template>
-  <span>
-    {{ project.title }}
-  </span>
+  <div>
+    {{ project.title }}{{ project.acf.backgroundColor }}
+  </div>
 </template>
 
 <script>
@@ -23,6 +23,14 @@ export default {
     return {
       project,
       cursor
+    }
+  },
+  mounted () {
+    this.$store.commit('changePageColor', this.project.acf.backgroundColor)
+  },
+  methods: {
+    changeColor (color) {
+      this.$store.commit('changePageColor', color)
     }
   }
 }

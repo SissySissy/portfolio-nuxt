@@ -1,19 +1,16 @@
 <template>
   <div>
     <test-canvas />
-    <div v-for="project of projects" :key="project.id">
-      <NuxtLink :to="`/projects/${project.projectId}`">
-        {{ project.title }}
-      </NuxtLink>
-    </div>
+    <project-grid :projects="projects" />
   </div>
 </template>
 
 <script>
 import { ALL_PROJECTS, client } from '~/api/main'
+import ProjectGrid from '~/components/ProjectGrid.vue'
 import TestCanvas from '~/components/TestCanvas.vue'
 export default {
-  components: { TestCanvas },
+  components: { TestCanvas, ProjectGrid },
   async asyncData () {
     const res = await client.query({
       query: ALL_PROJECTS
@@ -24,6 +21,9 @@ export default {
     return {
       projects
     }
+  },
+  mounted () {
+    this.$store.commit('changePageColor', '#F1F1F1')
   }
 }
 </script>

@@ -73,7 +73,7 @@ export default {
           css: { display: 'none' }
         })
       } else {
-        // reveal menu
+        // reveal TODO: menu on first render it jumps!
         this.$gsap.to('.hamburger-menu', {
           duration: 0,
           css: { display: 'block' }

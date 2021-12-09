@@ -1,15 +1,23 @@
 <template>
-  <div>
+  <div :style="{ 'background-color': pageBackgroundColor }">
     <main-header />
     <nuxt />
+    <main-footer />
   </div>
 </template>
 
 <script>
+import { mapState } from 'vuex'
+import MainFooter from '~/components/MainFooter.vue'
 import MainHeader from '~/components/MainHeader.vue'
 export default {
-  components: { MainHeader }
-
+  components: { MainHeader, MainFooter },
+  fetch ({ store }) {
+    store.commit('changePageColor')
+  },
+  computed: mapState([
+    'pageBackgroundColor'
+  ])
 }
 </script>
 
