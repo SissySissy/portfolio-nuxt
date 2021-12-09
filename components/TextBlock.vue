@@ -17,8 +17,8 @@
 export default {
   props: {
     columns: {
-      type: Object,
-      default: () => {}
+      type: Array,
+      default: () => []
     }
   },
   mounted () {

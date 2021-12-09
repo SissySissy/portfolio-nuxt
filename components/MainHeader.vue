@@ -1,6 +1,6 @@
 <template>
   <header class="main-header">
-    <div class="container">
+    <div class="main-header-container">
       <div class="wrapper">
         <div class="inner-header">
           <div class="logo">
@@ -52,7 +52,7 @@ export default {
     height: 100px;
     z-index: 100;
     width: 100vw;
-    .container {
+    .main-header-container {
         max-width: 1280px;
         margin: 0 auto;
     }

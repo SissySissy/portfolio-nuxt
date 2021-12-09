@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full">
+  <div class="w-full full-image-container">
     <div v-if="myImage.mimeType === 'video/mp4'" class="video-container">
       <video class="video" preload="auto" loop muted autoPlay>
         <source :src="myImage.mediaItemUrl" type="video/mp4">
@@ -52,4 +52,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  .full-image-container {
+    max-height: 95vh;
+    overflow: hidden;
+  }
 </style>

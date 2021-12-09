@@ -1,6 +1,5 @@
 <template>
   <div>
-    {{ project.title }}{{ project.acf.backgroundColor }}
     <my-hero :project="project" />
     <full-image :my-image="project.acf.featureImage" :slider-color="project.acf.backgroundColor" />
     <intro-project :project="project" />

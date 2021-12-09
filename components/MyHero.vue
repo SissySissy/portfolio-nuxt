@@ -3,7 +3,7 @@
     <h1 class="xl:text-9xl md:text-8xl text-5xl w-full text-center italic font-serif mb-10">
       {{ project.title }}
     </h1>
-    <NuxtLink class="link overline absolute left-0 bottom-10 padded cursor-pointer" to="/">
+    <NuxtLink class="link overline absolute left-0 bottom-10 cursor-pointer" to="/">
       back
     </NuxtLink>
   </div>
