@@ -12,9 +12,6 @@ import MainFooter from '~/components/MainFooter.vue'
 import MainHeader from '~/components/MainHeader.vue'
 export default {
   components: { MainHeader, MainFooter },
-  fetch ({ store }) {
-    store.commit('changePageColor')
-  },
   computed: mapState([
     'pageBackgroundColor'
   ])

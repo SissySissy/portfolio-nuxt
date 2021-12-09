@@ -20,22 +20,27 @@ export default {
       default: () => []
     }
   },
+  data: () => {
+    return {
+      scrollAnimation: null
+    }
+  },
   mounted () {
-    this.animateOnScroll()
+    this.scrollAnimation = this.$gsap.to('.grid-item', {
+      opacity: 1,
+      ease: 'Power1.easeInOut',
+      stagger: {
+        amount: 0.07
+      },
+      scrollTrigger: {
+        trigger: '.projects-grid'
+      }
+    })
+  },
+  beforeDestroy () {
+    this.scrollAnimation.kill()
   },
   methods: {
-    animateOnScroll () {
-      this.$gsap.to('.grid-item', {
-        opacity: 1,
-        ease: 'Power1.easeInOut',
-        stagger: {
-          amount: 0.07
-        },
-        scrollTrigger: {
-          trigger: '.projects-grid'
-        }
-      })
-    }
   }
 }
 </script>

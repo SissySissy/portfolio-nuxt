@@ -117,6 +117,7 @@ const SINGLE_PROJECT = gql`
             featureImage {
               sourceUrl
               mediaItemUrl
+              mimeType
             }
             flexibleContent {
               ... on Project_Acf_FlexibleContent_FullImage {

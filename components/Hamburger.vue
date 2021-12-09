@@ -94,7 +94,6 @@ export default {
     }
   },
   mounted () {
-    console.log(this.state)
   },
   methods: {
     fadeIn (node) {
