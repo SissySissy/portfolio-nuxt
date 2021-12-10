@@ -81,18 +81,24 @@ query MyQuery {
 }`
 
 const MAIN_PAGE = gql`
-  query MyQuery {
-    page(id: "2", idType: DATABASE_ID) {
-      content
-      acfAbout {
-        heroContent {
-          text
-          title
-          fieldGroupName
-        }
+query MyQuery {
+  page(id: "2", idType: DATABASE_ID) {
+    content
+    acfAbout {
+      interests {
+        label
+      }
+      techStack {
+        label
+      }
+      titleMenu
+      infoExtended {
+        contact
+        text
       }
     }
-  }`
+  }
+}`
 
 const SINGLE_PROJECT = gql`
   query Project($id: Int!) {
@@ -141,11 +147,14 @@ const SINGLE_PROJECT = gql`
               }
               ... on Project_Acf_FlexibleContent_DoubleImage {
                 fieldGroupName
-                imageLeft {
-                  sourceUrl
-                }
-                imageRight {
-                  sourceUrl
+                images {
+                  color
+                  centred
+                  image {
+                    sourceUrl
+                    mediaItemUrl
+                    mimeType
+                  }
                 }
               }
               ... on Project_Acf_FlexibleContent_TextBlock {

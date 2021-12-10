@@ -21,8 +21,8 @@
 </template>
 
 <script>
-import Hamburger from './Hamburger.vue'
-
+import { mapState } from 'vuex'
+import Hamburger from '~/components/Hamburger.vue'
 export default {
   components: { Hamburger },
   data: () => {
@@ -30,6 +30,12 @@ export default {
       menuIsActive: false,
       menuDisabled: false
     }
+  },
+  computed: mapState([
+    'headerContent'
+  ]),
+  mounted () {
+    console.log(this.headerContent)
   },
   methods: {
     toggleMenu () {

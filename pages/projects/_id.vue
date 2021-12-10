@@ -46,7 +46,7 @@ export default {
     }
   },
   mounted () {
-    console.log(this.project)
+    // console.log(this.project)
     this.$store.commit('changePageColor', this.project.acf.backgroundColor)
   },
   methods: {

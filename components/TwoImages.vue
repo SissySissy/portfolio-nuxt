@@ -1,7 +1,7 @@
 <template>
   <div class="two-images">
-    <div v-for="(image, index) in images" :key="index" class="image-wrap">
-      <img :src="image.sourceUrl" :alt="image.alt">
+    <div v-for="(item, index) in images" :key="index" :style="{ 'background-color': item.color }" class="image-wrap" :class="{ middle: item.centred }">
+      <img :src="item.image.sourceUrl" :alt="tr">
     </div>
   </div>
 </template>
@@ -20,6 +20,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  .middle {
+    img {
+      padding:10%;
+    }
+  }
   img {
     object-fit: cover;
   }
