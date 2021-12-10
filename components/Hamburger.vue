@@ -3,34 +3,27 @@
     <div class="base-layer layer" />
     <div class="menu-layer layer">
       <div class="menu-background" />
-      <div class="container">
-        <div class="wrapper">
+      <garden class="garden" />
+      <div class="menu-container">
+        <div v-if="pageData" class="wrapper">
           <div class="info">
             <h3 class="headline font-serif italic text-2xl lg:text-3xl mb-3">
-              About me
+              {{ pageData.acfAbout.titleMenu }}
             </h3>
             <p class="line text-xl font-serif mb-10">
-              test
+              {{ pageData.acfAbout.infoExtended.text }}
             </p>
-            <div class="menu-links">
-              <nav>
-                <ul>
-                  <li class="line">
-                    Linkedin
-                  </li>
-                  <li class="line">
-                    Artstation
-                  </li>
-                </ul>
-              </nav>
+            <a href="/">{{ pageData.acfAbout.infoExtended.contact }}</a>
+            <div v-for="item in pageData.acfAbout.techStack" :key="item.label" class="overline line">
+              {{ item.label }}
             </div>
           </div>
           <div ref="interests" class="interests">
             <h3 class="headline font-serif italic text-2xl lg:text-3xl mb-10">
               Interests
             </h3>
-            <a v-for="interest in interestsArray" :key="interest.name" class="overline" @mouseover="showBackgroundImage(interest.image)" @mouseleave="hideBackgroundImage()">
-              {{ interest.name }}
+            <a v-for="interest in pageData.acfAbout.interests" :key="interest.label" class="overline" @mouseover="showBackgroundImage(interest.background.sourceUrl)" @mouseleave="hideBackgroundImage()">
+              {{ interest.label }}
             </a>
           </div>
         </div>
@@ -40,7 +33,10 @@
 </template>
 
 <script>
+import Garden from './Garden.vue'
+import { client, MAIN_PAGE } from '~/api/main'
 export default {
+  components: { Garden },
   props: {
     state: {
       type: Boolean
@@ -48,19 +44,14 @@ export default {
   },
   data: () => {
     return {
-      interestsArray: [
-        // TODO
-        { name: 'interest1', image: '../assets/image1.jpeg' },
-        { name: 'interest2', image: 'https://picsum.photos/200/300' },
-        { name: 'interest3', image: 'https://picsum.photos/200/300' }
-      ]
+      pageData: null
     }
   },
   watch: {
     state () {
       if (!this.state) {
       // hide menu
-        this.$gsap.to(['.layer'], {
+        this.$gsap.to('.layer', {
           duration: 0.8,
           height: 0,
           ease: 'power3.inOut',
@@ -89,11 +80,17 @@ export default {
         // reveal content
         this.stagger('.line')
         this.fadeIn('.info')
+        // this.fadeIn('.garden')
         this.fadeIn('.interests')
       }
     }
   },
-  mounted () {
+  async mounted () {
+    const pageReq = await client.query({
+      query: MAIN_PAGE
+    })
+
+    this.pageData = pageReq.data?.page || null
   },
   methods: {
     fadeIn (node) {
@@ -188,7 +185,7 @@ export default {
               background-repeat: no-repeat;
           }
 
-          .container {
+          .menu-container {
               height: 100%;
           }
 
@@ -241,6 +238,9 @@ export default {
           }
       }
 
+      .layer {
+        height: 0;
+      }
   }
 
 </style>

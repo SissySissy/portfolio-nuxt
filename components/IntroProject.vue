@@ -5,11 +5,9 @@
         {{ project.acf.subtitle }}
       </div>
       <div class="overline mb-10">
-        {{ project.acf.year }} {{ project.acf.client }}
+        {{ project.acf.client }}
       </div>
-      <p class="font-serif mb-10 lg:mb-0">
-        {{ project.content }}
-      </p>
+      <p class="font-serif mb-10 lg:mb-0" v-html="project.content" />
     </div>
     <div class="side col-4of24 offset-2of24 col-md-8of24 col-sm-12of12 offset-sm-0">
       <div v-for="item of project.acf.techList" :key="item.techItem" class="overline mb-4 md:mb-6">
@@ -30,6 +28,9 @@ export default {
 }
 </script>
 
-<style>
-
+<style lang="scss">
+  .headline {
+    font-size: clamp(1.75rem, 4vw, 3rem);
+    line-height: 1.06;
+  }
 </style>

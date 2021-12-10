@@ -87,6 +87,9 @@ query MyQuery {
     acfAbout {
       interests {
         label
+        background {
+          sourceUrl
+        }
       }
       techStack {
         label

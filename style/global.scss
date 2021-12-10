@@ -8,12 +8,13 @@ $medium : 1024px;
 //16:9 aspect ratio will result in 9 / 16 * 100% = 56.25%;
 //4:3 aspect ratio will result in 3 / 4 * 100% = 75%;
 //1:1 aspect ratio will result in 1 / 1 * 100% = 100%.
+body.no-scroll {
+    overflow: hidden;
+}
 
 .row {
     padding: 150px 0;
     display: flex;
-    margin-left: -0.54vw;
-    margin-right: -0.54vw;
     flex-wrap: wrap;
     flex-direction: row;
     min-width: 100%;
@@ -29,8 +30,8 @@ div[class^="col-"]{
     
 }
 
-.headline {
-    // font-size: max(1.5625vw, 24px);
+p {
+    font-size: 1.25rem;
 }
 
 .offset-0 {

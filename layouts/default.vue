@@ -1,5 +1,5 @@
 <template>
-  <div :style="{ 'background-color': pageBackgroundColor }">
+  <div class="wrapper" :style="{ 'background': pageBackgroundColor }">
     <main-header />
     <nuxt />
     <main-footer />
@@ -7,18 +7,35 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
 import MainFooter from '~/components/MainFooter.vue'
 import MainHeader from '~/components/MainHeader.vue'
 export default {
   components: { MainHeader, MainFooter },
-  computed: mapState([
-    'pageBackgroundColor'
-  ])
+  computed: {
+    pageBackgroundColor () {
+      return this.$store.state.pageBackgroundColor
+    },
+    pageNoScroll () {
+      return this.$store.state.pageNoScroll
+    }
+  },
+  watch: {
+    pageNoScroll (value) {
+      if (value) {
+        document.body.classList.add('no-scroll')
+      } else {
+        document.body.classList.remove('no-scroll')
+      }
+    }
+  }
 }
 </script>
 
 <style lang="scss">
+  .wrapper {
+    transition: all 0.3s;
+  }
+
   .page-enter-active,
   .page-leave-active {
     transition: opacity 0.25s, transform 0.25s;

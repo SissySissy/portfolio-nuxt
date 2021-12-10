@@ -40,13 +40,6 @@ export default {
     this.imageAnimation.kill()
   },
   methods: {
-    animateImage () {
-      const tl = this.$gsap.timeline()
-      tl.to('.image-container', { duration: 0, visibility: 'visible' })
-        .to('.slider', { width: '0%', duration: 1.4, ease: 'Power2.easeInOut' })
-        .from('.full-image', { scale: 1.6, duration: 1.4, ease: 'Power2.easeInOut', delay: -1.6 })
-        .from('.slider', { background: this.pageBackgroundColor })
-    }
   }
 }
 </script>
