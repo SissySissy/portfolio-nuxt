@@ -1,8 +1,10 @@
 <template>
-  <footer class="flex w-full justify-between padded">
-    <p class="overline">
-      © {{ copyright() }} Silvia Monti, All Rights Reserved.
-    </p>
+  <footer class="w-full md:pb-10">
+    <div class="max-width-16of24 mx-auto">
+      <p class="overline">
+        © {{ copyright() }} Silvia Monti, All Rights Reserved.
+      </p>
+    </div>
   </footer>
 </template>
 

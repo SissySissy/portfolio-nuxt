@@ -426,12 +426,8 @@ svg {
   width :100%;
   position: absolute;
   bottom:0;
+  left:0;
 }
-
-// circle {
-//   animation: test 3s infinite;
-//   transform-origin: center;
-// }
 
 @for $i from 1 through 7 {
   circle:nth-child(7n + #{$i}) {

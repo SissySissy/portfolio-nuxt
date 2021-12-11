@@ -10,12 +10,14 @@ module.exports = {
   },
   theme: {
     fontFamily: {
-      sans: ['Graphik', 'sans-serif'],
+      sans: ['Poppins', 'sans-serif'],
       serif: ['Cardo', 'serif'],
     },
     extend: {
       colors: {
-        background: '#f1f1f1'
+        background: '#f1f1f1',
+        emerald : '#052329',
+        jade :'#094F54'
       }
       //adding instead of substituting
     },

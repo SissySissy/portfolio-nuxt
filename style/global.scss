@@ -3,7 +3,7 @@ $columns: 24;
 $small-columns: 12;
 
 $phone : 767px;
-$medium : 1024px;
+$medium : 1250px;
 
 //16:9 aspect ratio will result in 9 / 16 * 100% = 56.25%;
 //4:3 aspect ratio will result in 3 / 4 * 100% = 75%;
@@ -12,8 +12,10 @@ body.no-scroll {
     overflow: hidden;
 }
 
+.spacer {
+    padding: 250px 0;
+}
 .row {
-    padding: 150px 0;
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
@@ -30,6 +32,23 @@ div[class^="col-"]{
     
 }
 
+.pill {
+    border: .5px solid currentColor;
+    padding: 8px 16px;
+    text-transform: uppercase;
+    letter-spacing: .25rem;
+    font-size: 0.8rem;
+    font-weight: 300;
+    border-radius: 100px;
+    display: inline-block;
+    margin: 16px;
+    transition: 0.3s ease-in-out;
+
+    &:hover {
+        padding: 8px 20px;
+    }
+}
+
 p {
     font-size: 1.25rem;
 }
@@ -38,22 +57,35 @@ p {
     margin-left: 0;
 }
 
+.max-width-16of24{
+    max-width: calc(100% / 24 * 16);
+    @media only screen and (max-width: $medium){
+        max-width: calc(100% / 24 * 20);
+    }
+
+    @media only screen and (max-width: $phone) {
+        max-width: 100%;
+        padding: 24px;
+    }
+    
+}
+
 @for $i from 1 through $columns {
     .col-#{$i}of24 {
-        width: (100% / $columns * $i);
+        width: calc(100% / $columns * $i);
     }
     .offset-#{$i}of24{
-        margin-left: (100% / $columns * $i);
+        margin-left: calc(100% / $columns * $i);
     } 
 }
 
 @media only screen and (max-width: $medium) {
     @for $i from 1 through $columns {
         .col-md-#{$i}of24 {
-            width: (100% / $columns * $i);
+            width: calc(100% / $columns * $i);
         }
         .offset-md-#{$i}{
-            margin-left: (100% / $columns * $i);
+            margin-left: calc(100% / $columns * $i);
         } 
     }
 }
@@ -61,10 +93,10 @@ p {
 @media only screen and (max-width: $phone) {
     @for $i from 1 through $small-columns {
         .col-sm-#{$i}of12 {
-            width: (100% / $small-columns * $i);
+            width: calc(100% / $small-columns * $i);
         }
         .offset-sm-#{$i}{
-            margin-left: (100% / $small-columns * $i);
+            margin-left: calc(100% / $small-columns * $i);
         } 
     }
 }
@@ -181,20 +213,15 @@ a {
 p {
     font-weight: 300;
     letter-spacing: .05rem;
-    // font-size: max(1.25rem, 16px);
     font-family: Cardo, serif;
 }
 
 .overline {
-    letter-spacing: .19rem;
+    letter-spacing: .25rem;
     font-size: 0.8rem;
     font-weight: 300;
     text-transform: uppercase;
-    font-family: Graphik, sans-serif;
-    @media only screen and (max-width: 800px) {
-        font-size: 0.8rem;
-    }
-
+    font-family: Poppins, sans-serif;
 }
 
 .padded {
@@ -240,75 +267,3 @@ $darkBlue : #273f78;
 
     
 }
-
-
-// Grid main page
-
-$row: 5vw;
-
-.project-page-grid {
-    display: grid;
-    gap: 20px;
-    padding: 20px;
-    grid-template-columns: repeat(7, 1fr);
-    grid-auto-rows: auto;
-
-    @media only screen and (max-width: 1280px) {
-        grid-template-columns: repeat(9, 1fr);
-    }
-    
-
-    .main {
-        grid-column: 2 / span 2;
-        margin-top: $row * 2;
-
-        @media only screen and (max-width: 1280px) {
-            grid-column: 2 / span 4;
-        }
-
-        @media only screen and (max-width: 800px) {
-            grid-column: span 9;
-            
-        }
-    }
-
-    .side {
-       padding-left :40px;
-    
-    }
-
-    .column {
-        grid-row: span 10;
-        margin-top: $row * 2;
-
-        @media only screen and (max-width: 800px) {
-            grid-row: span 6;
-            margin-top: 0;
-        }
-
-        &:first-child  {
-            grid-column: 2/ span 2;
-            
-            @media only screen and (max-width: 1280px) {
-                grid-column: 2 / span 3;
-            }
-            @media only screen and (max-width: 800px) {
-                margin-top: $row * 2;
-                grid-column: span 9;
-            }
-        }
-
-        &:last-child  {
-            grid-column: 5/ span 2;
-            @media only screen and (max-width: 1280px) {
-                grid-column: 6 / span 3;
-            }
-            @media only screen and (max-width: 800px) {
-                margin-top: 0;
-                grid-column: span 9;
-            }
-        }
-    }
-
-}
-

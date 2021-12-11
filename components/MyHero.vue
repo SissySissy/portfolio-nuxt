@@ -4,7 +4,7 @@
       {{ project.title }}
     </h1>
     <NuxtLink class="link overline absolute left-10 bottom-10 cursor-pointer" to="/">
-      back
+      ( back )
     </NuxtLink>
   </div>
 </template>

@@ -1,11 +1,11 @@
 <template>
-  <header class="main-header w-full fixed top-0 left-0 right-0 z-50 px-5">
-    <div class="main-header-container z-50 relative h-24 max-w-7xl mx-auto flex items-center justify-between">
-      <NuxtLink to="/">
-        <span class="overline">Silvia Monti</span>
+  <header class="main-header w-full fixed top-0 left-0 right-0 z-50" :class="{ 'text-white' : menuIsActive }">
+    <div class="main-header-container z-50 relative h-24 max-width-16of24 mx-auto flex items-baseline md:mt-10 justify-between">
+      <NuxtLink to="/" class="logo">
+        Silvia Monti
       </NuxtLink>
       <button class="overline" :disabled="menuDisabled" @click="toggleMenu">
-        {{ menuIsActive? 'Close' : 'About' }}
+        {{ menuIsActive? '( Close )' : 'About' }}
       </button>
     </div>
     <hamburger :state="menuIsActive" />
@@ -40,4 +40,14 @@ export default {
 </script>
 
 <style lang="scss" scoped >
+.logo {
+  font-style: italic;
+  font-family: Cardo, Serif;
+  font-size: 1.25rem;
+  letter-spacing: 0.1rem;
+
+  &::before  {
+    display:none;
+  }
+}
 </style>

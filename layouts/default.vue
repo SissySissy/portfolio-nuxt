@@ -38,12 +38,11 @@ export default {
 
   .page-enter-active,
   .page-leave-active {
-    transition: opacity 0.25s, transform 0.25s;
+    transition: opacity 0.25s;
   }
 
   .page-enter,
   .page-leave-to {
     opacity: 0;
-    transform: translateY(-10px);
   }
 </style>

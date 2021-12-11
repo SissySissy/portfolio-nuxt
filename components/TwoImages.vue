@@ -1,7 +1,7 @@
 <template>
   <div class="two-images">
     <div v-for="(item, index) in images" :key="index" :style="{ 'background-color': item.color }" class="image-wrap" :class="{ middle: item.centred }">
-      <img :src="item.image.sourceUrl" :alt="tr">
+      <img :src="item.image.sourceUrl">
     </div>
   </div>
 </template>
@@ -10,8 +10,8 @@
 export default {
   props: {
     images: {
-      type: Object,
-      default: () => {}
+      type: Array,
+      default: () => []
     }
   },
   mounted () {
