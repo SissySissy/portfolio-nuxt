@@ -7,10 +7,10 @@
       <div class="overline mb-10">
         {{ project.acf.client }}
       </div>
-      <p class="font-serif mb-10 lg:mb-0" v-html="project.content" />
+      <div class="font-serif mb-10 lg:mb-0" v-html="project.content" />
     </div>
     <div class="side col-4of24 offset-2of24 col-md-8of24 col-sm-12of12 offset-sm-0">
-      <div v-for="item of project.acf.techList" :key="item.techItem" class="pill md:mb-6">
+      <div v-for="item of project.acf.techList" :key="item.techItem" class="pill">
         {{ item.techItem }}
       </div>
     </div>

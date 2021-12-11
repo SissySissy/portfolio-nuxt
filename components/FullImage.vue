@@ -5,7 +5,7 @@
         <source :src="myImage.mediaItemUrl" type="video/mp4">
       </video>
     </div>
-    <div class="aspect-ratio--16-9 lg  image-container w-full">
+    <div v-else class="aspect-ratio--16-9 lg  image-container w-full">
       <img class="full-image w-full h-full absolute top-0 right-0 left-0 bottom-0" :src="myImage.sourceUrl" alt="te">
       <div class="slider" />
     </div>

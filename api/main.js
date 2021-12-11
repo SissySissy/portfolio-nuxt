@@ -154,6 +154,7 @@ const SINGLE_PROJECT = gql`
                   color
                   centred
                   image {
+                    id
                     sourceUrl
                     mediaItemUrl
                     mimeType

@@ -37,11 +37,11 @@ div[class^="col-"]{
     padding: 8px 16px;
     text-transform: uppercase;
     letter-spacing: .25rem;
-    font-size: 0.8rem;
-    font-weight: 300;
+    font-size: 0.75rem;
     border-radius: 100px;
     display: inline-block;
-    margin: 16px;
+    text-indent:.25rem;
+    margin: 0 16px 16px 0;
     transition: 0.3s ease-in-out;
 
     &:hover {
@@ -169,22 +169,8 @@ p {
       }
   }
 
-  // next project
-
-  .nextcase-content{
-    padding: 350px 0;
-    text-align: center;
-    // font-size: clamp(3.25rem, 10vw, 5.41667vw);
-
-    @media only screen and (max-width: $medium) {
-        padding: 170px 0;
-    }
-  }
-
-
-a {
-    position: relative;
-    padding-bottom: 10px;
+a.link {
+    padding-bottom: 8px;
    
     &:hover {
         &::before{
@@ -218,8 +204,7 @@ p {
 
 .overline {
     letter-spacing: .25rem;
-    font-size: 0.8rem;
-    font-weight: 300;
+    font-size: 0.9rem;
     text-transform: uppercase;
     font-family: Poppins, sans-serif;
 }
@@ -239,9 +224,6 @@ p {
     }
 }
 
-//Colors
-$blue: #3f5996;
-$darkBlue : #273f78;
 
 //image
 

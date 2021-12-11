@@ -39,7 +39,6 @@ export default {
     })
     const project = res.data?.projects?.edges?.[0]?.node || null
     const cursor = res.data?.projects?.edges?.[0]?.cursor || null
-
     return {
       project,
       cursor

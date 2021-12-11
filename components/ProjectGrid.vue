@@ -1,14 +1,13 @@
 <template>
   <div class="projects-grid mt-80">
-    <div v-for="project of projects" :key="project.id" class="overflow-hidden grid-item cursor-pointer relative">
-      <NuxtLink :to="`/projects/${project.projectId}`">
+    <NuxtLink v-for="project of projects" :key="project.id" class="grid-item cursor-pointer relative" :to="`/projects/${project.projectId}`">
+      <div class="overflow-hidden">
         <img v-inview:class="['active']" :src="project.acf.featureImage.sourceUrl">
-        <div class="absolute caption font-serif">
-          {{ project.title }}
-        </div>
-        <span> Interaction Design</span>
-      </NuxtLink>
-    </div>
+      </div>
+      <div class="caption">
+        {{ project.title }} <span> Interaction Design</span>
+      </div>
+    </NuxtLink>
   </div>
 </template>
 
@@ -38,12 +37,15 @@ $row: 5vw;
     grid-auto-rows: $row;
 
     .grid-item {
-      // opacity: 0;
-
+      position: relative;
       @for $i from 1 through 5 {
         &:nth-child(5n + #{$i}) img {
           transition-delay: #{$i*0.1}s;
         }
+      }
+      .caption {
+        top: 100%;
+        background: red;
       }
     }
 
@@ -63,10 +65,6 @@ $row: 5vw;
             transform: scale(1.1);
             transition: 0.3s ease-in-out;
         }
-    }
-
-    .grid-item .caption {
-        bottom: -20px;
     }
 
     .grid-item:nth-child(5n + 1) {
