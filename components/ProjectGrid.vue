@@ -2,7 +2,7 @@
   <div class="projects-grid mt-80">
     <div v-for="project of projects" :key="project.id" class="overflow-hidden grid-item cursor-pointer relative">
       <NuxtLink :to="`/projects/${project.projectId}`">
-        <img :src="project.acf.featureImage.sourceUrl">
+        <img v-inview:class="['active']" :src="project.acf.featureImage.sourceUrl">
         <div class="absolute caption font-serif">
           {{ project.title }}
         </div>
@@ -20,25 +20,7 @@ export default {
       default: () => []
     }
   },
-  data: () => {
-    return {
-      scrollAnimation: null
-    }
-  },
   mounted () {
-    this.scrollAnimation = this.$gsap.to('.grid-item', {
-      opacity: 1,
-      ease: 'Power1.easeInOut',
-      stagger: {
-        amount: 0.07
-      },
-      scrollTrigger: {
-        trigger: '.projects-grid'
-      }
-    })
-  },
-  beforeDestroy () {
-    this.scrollAnimation.kill()
   },
   methods: {
   }
@@ -56,14 +38,25 @@ $row: 5vw;
     grid-auto-rows: $row;
 
     .grid-item {
-      opacity: 0;
+      // opacity: 0;
+
+      @for $i from 1 through 5 {
+        &:nth-child(5n + #{$i}) img {
+          transition-delay: #{$i*0.1}s;
+        }
+      }
     }
 
     .grid-item img {
+        opacity: 0;
         width: 100%;
         height: 100%;
         object-fit: cover;
         transition: 0.5s ease-in-out;
+
+        &.active {
+          opacity: 1;
+        }
 
         &:hover {
             opacity: .7;
