@@ -103,6 +103,21 @@ query MyQuery {
   }
 }`
 
+const IMAGES_ARRAY = gql`
+query MyQuery {
+  page(id: "2", idType: DATABASE_ID) {
+    acfAbout {
+      heroFiles {
+        image {
+          sourceUrl
+          mediaItemUrl
+          mimeType
+        }
+      }
+    }
+  }
+}`
+
 const SINGLE_PROJECT = gql`
   query Project($id: Int!) {
     projects(where: {id: $id}) {
@@ -176,4 +191,4 @@ const SINGLE_PROJECT = gql`
     }
   }`
 
-export { client, ALL_PROJECTS, MAIN_PAGE, SINGLE_PROJECT, NEXT_PROJECT, FIRST_PROJECT }
+export { client, ALL_PROJECTS, MAIN_PAGE, IMAGES_ARRAY, SINGLE_PROJECT, NEXT_PROJECT, FIRST_PROJECT }

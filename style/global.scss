@@ -8,8 +8,13 @@ $medium : 1250px;
 //16:9 aspect ratio will result in 9 / 16 * 100% = 56.25%;
 //4:3 aspect ratio will result in 3 / 4 * 100% = 75%;
 //1:1 aspect ratio will result in 1 / 1 * 100% = 100%.
-body.no-scroll {
+body {
     overflow: hidden;
+    overflow-y: auto;
+
+    &.no-scroll {
+        overflow: hidden;
+    }
 }
 
 .spacer {
