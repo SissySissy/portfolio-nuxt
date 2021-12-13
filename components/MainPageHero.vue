@@ -21,7 +21,8 @@ export default {
       circle: null,
       pos: { x: 0, y: 0 },
       mouse: { x: 0, y: 0 },
-      running: false
+      running: false,
+      index: 0
     }
   },
   computed: {
@@ -58,9 +59,12 @@ export default {
       if (!this.images || this.images.length === 0) {
         return null
       }
-
-      const randomIndex = Math.floor(Math.random() * this.images.length)
-      this.randomImage = this.images[randomIndex].image
+      if (this.index === this.images.length) {
+        this.index = 0
+      }
+      // const randomIndex = Math.floor(Math.random() * this.images.length)
+      this.randomImage = this.images[this.index].image
+      this.index++
 
       setTimeout(() => {
         if (this.running) {

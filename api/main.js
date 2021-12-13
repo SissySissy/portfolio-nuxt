@@ -25,6 +25,8 @@ const ALL_PROJECTS = gql`
         title
         acf {
           featureImage {
+            mediaItemUrl
+            mimeType
             sourceUrl
             altText
             mediaDetails {
