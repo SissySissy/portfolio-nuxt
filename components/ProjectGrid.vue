@@ -1,11 +1,19 @@
 <template>
   <div class="projects-grid mt-80">
     <NuxtLink v-for="project of projects" :key="project.id" class="grid-item cursor-pointer relative" :to="`/projects/${project.projectId}`">
-      <div class="overflow-hidden">
-        <img v-inview:class="['active']" :src="project.acf.featureImage.sourceUrl">
-      </div>
-      <div class="caption">
-        {{ project.title }} <span> Interaction Design</span>
+      <p class="caption overline">
+        {{ project.title }}
+      </p>
+      <div class="wrapper-grid-item">
+        <img v-if="project.acf.featureImage.mimeType.includes('image')" v-inview:class="['active']" :src="project.acf.featureImage.sourceUrl">
+        <video
+          v-if="project.acf.featureImage.mimeType.includes('video')"
+          v-inview:class="['active']"
+          :src="project.acf.featureImage.mediaItemUrl"
+          autoplay
+          loop
+          muted
+        />
       </div>
     </NuxtLink>
   </div>
@@ -36,34 +44,27 @@ $row: 5vw;
     grid-template-columns: repeat(6, 1fr);
     grid-auto-rows: $row;
 
-    .grid-item {
-      position: relative;
-      @for $i from 1 through 5 {
-        &:nth-child(5n + #{$i}) img {
-          transition-delay: #{$i*0.1}s;
-        }
-      }
-      .caption {
-        top: 100%;
-        background: red;
-      }
+    @media only screen and (max-width: 800px) {
+      padding: 0;
     }
 
-    .grid-item img {
-        opacity: 0;
-        width: 100%;
+    .grid-item img, .grid-item video {
+        width: 0%;
         height: 100%;
         object-fit: cover;
-        transition: 0.5s ease-in-out;
-
-        &.active {
-          opacity: 1;
-        }
+         -webkit-transition: -webkit-transform .5s cubic-bezier(.4,.22,.21,1.04);
+        transition: -webkit-transform .5s cubic-bezier(.4,.22,.21,1.04);
+        -o-transition: -o-transform .5s cubic-bezier(.4,.22,.21,1.04);
+        -moz-transition: transform .5s cubic-bezier(.4,.22,.21,1.04),-moz-transform .5s cubic-bezier(.4,.22,.21,1.04);
+        transition: transform .5s cubic-bezier(.4,.22,.21,1.04);
+        transition: transform .5s cubic-bezier(.4,.22,.21,1.04),-webkit-transform .5s cubic-bezier(.4,.22,.21,1.04),-moz-transform .5s cubic-bezier(.4,.22,.21,1.04),-o-transform .5s cubic-bezier(.4,.22,.21,1.04);
 
         &:hover {
-            opacity: .7;
-            transform: scale(1.1);
-            transition: 0.3s ease-in-out;
+          transform: scale(1.055);
+        }
+
+        &.active {
+          width: 100%;
         }
     }
 
@@ -128,6 +129,31 @@ $row: 5vw;
             grid-row: span 10;
         }
     }
+
+  .grid-item {
+    position: relative;
+    // @for $i from 1 through 5 {
+    //   &:nth-child(5n + #{$i}) img {
+    //     transition-delay: #{$i*0.1}s;
+    //   }
+    // }
+    .caption {
+      position: absolute;
+      top: -30px;
+    }
+
+    .wrapper-grid-item {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    @media only screen and (max-width: 800px) {
+      margin-bottom: 50px !important;
+    }
+  }
+
 }
 
 </style>

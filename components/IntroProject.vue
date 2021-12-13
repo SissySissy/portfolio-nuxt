@@ -1,5 +1,5 @@
 <template>
-  <div class="row intro w-full">
+  <div class="intro row w-full">
     <div class="main col-8of24 offset-4of24 col-md-10of24 offset-md-2 col-sm-12of12 offset-sm-0">
       <div class="headline font-serif italic mb-3">
         {{ project.acf.subtitle }}
@@ -35,6 +35,8 @@ export default {
     letter-spacing: 0.025rem;
   }
   .intro{
-    padding: 150px 0 250px;
+     @media only screen and (min-width: 767px) {
+        padding: 150px 0 250px;
+    }
   }
 </style>

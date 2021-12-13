@@ -5,13 +5,11 @@
       <div class="menu-background" />
       <garden class="garden fade" />
       <div v-if="pageData" class="menu-container row text-center">
-        <div class="info pt-48 col-12of24 offset-6of24 col-md-20of24 offset-md-2 col-sm-12of12 offset-sm-0">
+        <div class="info pt-10 md:pt-48 col-12of24 offset-6of24 col-md-20of24 offset-md-2 col-sm-12of12 offset-sm-0">
           <h3 class="headline line font-serif italic text-2xl lg:text-3xl mb-10">
             {{ pageData.acfAbout.titleMenu }}
           </h3>
-          <p class="line lead-paragraph font-serif mb-10">
-            {{ pageData.acfAbout.infoExtended.text }}
-          </p>
+          <div class="line lead-paragraph font-serif mb-10" v-html="pageData.content" />
         </div>
         <div class="interests line col-16of24 offset-4of24 col-md-20of24 offset-md-2 col-sm-12of12 offset-sm-0">
           <h4 class="overline m-10">
@@ -138,6 +136,30 @@ export default {
     font-size: clamp(1.25rem, 3.5vw, 1.5rem);
     font-weight: 300;
     letter-spacing: .05rem;
+    a {
+        padding-bottom: 8px;
+        &:hover {
+            &::before{
+          transform: scaleX(0);
+            }
+        }
+        &::before{
+            content: "";
+            display: block;
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            height: 1px;
+            background: black;
+            -webkit-transition: -webkit-transform .5s cubic-bezier(.4,.22,.21,1.04);
+            transition: -webkit-transform .5s cubic-bezier(.4,.22,.21,1.04);
+            -o-transition: -o-transform .5s cubic-bezier(.4,.22,.21,1.04);
+            -moz-transition: transform .5s cubic-bezier(.4,.22,.21,1.04),-moz-transform .5s cubic-bezier(.4,.22,.21,1.04);
+            transition: transform .5s cubic-bezier(.4,.22,.21,1.04);
+            transition: transform .5s cubic-bezier(.4,.22,.21,1.04),-webkit-transform .5s cubic-bezier(.4,.22,.21,1.04),-moz-transform .5s cubic-bezier(.4,.22,.21,1.04),-o-transform .5s cubic-bezier(.4,.22,.21,1.04);
+        }
+      }
   }
   .hamburger-menu {
       display: none;
@@ -188,6 +210,11 @@ export default {
       }
       .layer {
          height: 0;
+      }
+      .memu-container {
+        @media only screen and (max-width: 800px) {
+          overflow: scroll;
+        }
       }
   }
 </style>
