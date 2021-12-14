@@ -46,7 +46,6 @@ export default {
   },
   methods: {
     animateImage () {
-      console.log('he')
       this.$gsap.from('.preview', { scale: 1.6, duration: 1.4, ease: 'Power2.easeInOut', delay: -1.6 })
     }
   }

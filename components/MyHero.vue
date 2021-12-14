@@ -1,6 +1,6 @@
 <template>
   <div class="hero w-full relative flex flex-column justify-center items-center">
-    <h1 class="xl:text-9xl md:text-8xl text-5xl w-full text-center italic font-serif mb-10">
+    <h1 class="project-title w-full italic text-center">
       {{ project.title }}
     </h1>
     <NuxtLink class="link overline absolute left-10 bottom-10 cursor-pointer" to="/">
@@ -25,6 +25,12 @@ export default {
 
 <style lang="scss" scoped>
   .hero {
-    height: 60vh;
+    min-height: 60vh;
+  }
+  .project-title {
+    font-size: clamp(4rem, 5vw , 8rem);
+    letter-spacing: .05rem;
+    font-family: Cardo, serif;
+    line-height: 1.15;
   }
 </style>

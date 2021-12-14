@@ -3,20 +3,22 @@
     <div class="base-layer layer bg-jade" />
     <div class="menu-layer bg-emerald layer">
       <div class="menu-background" />
-      <garden class="garden fade" />
-      <div v-if="pageData" class="menu-container row text-center">
-        <div class="info md:pt-48 col-12of24 offset-6of24 col-md-20of24 offset-md-2 col-sm-12of12 offset-sm-0">
-          <h3 class="headline line font-serif italic text-2xl lg:text-3xl mb-10">
-            {{ pageData.acfAbout.titleMenu }}
-          </h3>
-          <div class="line lead-paragraph font-serif mb-10" v-html="pageData.content" />
-        </div>
-        <div class="interests line col-16of24 offset-4of24 col-md-20of24 offset-md-2 col-sm-12of12 offset-sm-0">
-          <h4 class="overline m-10">
-            My focus
-          </h4>
-          <div v-for="interest in pageData.acfAbout.interests" :key="interest.label" class="pill" @mouseover="showBackgroundImage(interest.background.sourceUrl)" @mouseleave="hideBackgroundImage()">
-            {{ interest.label }}
+      <garden class="fade" />
+      <div v-if="pageData" class="container-menu">
+        <div class="info">
+          <div class="max-w-4xl fade text-center m-auto">
+            <h3 class="line font-serif italic text-2xl lg:text-3xl mb-10">
+              {{ pageData.acfAbout.titleMenu }}
+            </h3>
+            <div class="line lead-paragraph font-serif mb-10" v-html="pageData.content" />
+            <div class="line interests">
+              <h4 class="overline m-10">
+                My focus
+              </h4>
+              <div v-for="interest in pageData.acfAbout.interests" :key="interest.label" class="pill" @mouseover="showBackgroundImage(interest.background.sourceUrl)" @mouseleave="hideBackgroundImage()">
+                {{ interest.label }}
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -25,10 +27,10 @@
 </template>
 
 <script>
-import Garden from './Garden.vue'
+// import Garden from './Garden.vue'
 import { client, MAIN_PAGE } from '~/api/main'
 export default {
-  components: { Garden },
+  // components: { Garden },
   props: {
     state: {
       type: Boolean
@@ -85,14 +87,10 @@ export default {
   methods: {
     fadeIn (node) {
       this.$gsap.from(node, {
-        y: 60,
         duration: 1,
         delay: 0.4,
         opacity: 0,
-        ease: 'power3.inOut',
-        stagger: {
-          amount: 0.3
-        }
+        ease: 'power3.inOut'
       })
     },
     stagger (array) {
@@ -136,11 +134,13 @@ export default {
     font-size: clamp(1.25rem, 3.5vw, 1.5rem);
     font-weight: 300;
     letter-spacing: .05rem;
-    a {
-        padding-bottom: 8px;
+    line-height: 1.75;
+    ::v-deep a {
+      position: relative;
+        padding-bottom: 4px;
         &:hover {
             &::before{
-          transform: scaleX(0);
+            transform: scaleX(0);
             }
         }
         &::before{
@@ -151,7 +151,7 @@ export default {
             right: 0;
             bottom: 0;
             height: 1px;
-            background: black;
+            background: currentColor;
             -webkit-transition: -webkit-transform .5s cubic-bezier(.4,.22,.21,1.04);
             transition: -webkit-transform .5s cubic-bezier(.4,.22,.21,1.04);
             -o-transition: -o-transform .5s cubic-bezier(.4,.22,.21,1.04);
@@ -161,9 +161,30 @@ export default {
         }
       }
   }
-  .garden {
-    position: absolute;
-    bottom:0
+  .container-menu{
+    position: relative;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+  }
+  .info {
+    margin-top: 150px ;
+    @media only screen and (max-width: 800px) {
+      margin-top: 80px ;
+    }
+    position: relative;
+    height: 100%;
+    width: 100%;
+    overflow-y: auto;
+    padding: 24px;
+  }
+  .interests {
+    a {
+        cursor: pointer;
+        padding: 8px;
+        margin: 0 16px;
+        transition: 0.3s ease-in-out;
+    }
   }
   .hamburger-menu {
       display: none;
@@ -182,16 +203,13 @@ export default {
           bottom: 0;
           right: 0;
           position: fixed;
-          height: 100%;
+          height: 0;
           width: 100%;
       }
       .menu-layer {
           position: relative;
           width: 100%;
-          height: 100%;
-          overflow: hidden;
-          overflow: scroll;
-
+          height: 0;
           .menu-background {
               top: 0;
               left: 0;
@@ -203,23 +221,8 @@ export default {
               opacity: 0;
               background-size: cover;
               background-repeat: no-repeat;
+              background-position: 50% 50%;
           }
-          .interests {
-              a {
-                  cursor: pointer;
-                  padding: 8px;
-                  margin: 0 16px;
-                  transition: 0.3s ease-in-out;
-              }
-          }
-      }
-      .layer {
-         height: 0;
-      }
-      .memu-container {
-        @media only screen and (max-width: 800px) {
-          overflow: scroll;
-        }
       }
   }
 </style>

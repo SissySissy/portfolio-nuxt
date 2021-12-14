@@ -39,9 +39,9 @@ export default {
         width: 70%;
         margin: auto;
         @media only screen and (max-width: 800px) {
-        padding:0;
-        width: 100%;
-        margin: 0;
+          padding:0;
+          width: 100%;
+          margin: 0;
         }
       }
     }

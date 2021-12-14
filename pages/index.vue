@@ -1,7 +1,7 @@
 <template>
   <div>
-    <div class="w-full relative flex justify-center items-center top-48 z-20">
-      <h1 class="xl:text-9xl md:text-8xl text-5xl w-full text-center italic font-serif mb-10">
+    <div class="w-full hero relative flex justify-center items-center top-48 z-20">
+      <h1 class="project-title w-full italic text-center">
         Hi, It's Silvia, <br> Interaction Design is <br>my Passion
       </h1>
     </div>
@@ -38,3 +38,14 @@ export default {
   }
 }
 </script>
+<style lang="scss" scoped>
+  .hero {
+      min-height: 60vh;
+    }
+  .project-title {
+    font-size: clamp(4rem, 5vw , 8rem);
+    letter-spacing: .05rem;
+    font-family: Cardo, serif;
+    line-height: 1.15;
+  }
+</style>
