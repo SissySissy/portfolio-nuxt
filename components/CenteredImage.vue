@@ -1,13 +1,8 @@
 <template>
-  <div :style="{ 'background-color': backgroundColor }" class="w-full">
-    <div v-if="myImage.mimeType === 'video/mp4'" class="video-container">
-      <video class="video" preload="auto" loop muted autoPlay>
-        <source :src="myImage.mediaItemUrl" type="video/mp4">
-      </video>
-    </div>
-    <div class="aspect-ratio--16-9 lg col-12of24 image-container ">
-      <img class="full-image w-full h-full absolute top-0 right-0 left-0 bottom-0" :src="myImage.sourceUrl" alt="te">
-      <div class="slider" />
+  <div :style="{ 'background-color': backgroundColor }" class="centred-image w-full">
+    <div class="container">
+      <img v-if="type === 'image'" :src="myImage.mediaItemUrl">
+      <video v-if="type === 'video'" :src="myImage.mediaItemUrl" autoplay loop muted />
     </div>
   </div>
 </template>
@@ -29,27 +24,43 @@ export default {
       imageAnimation: null
     }
   },
-  mounted () {
-    this.imageAnimation = this.$gsap.timeline()
-      .to('.image-container', { duration: 0, visibility: 'visible' })
-      .to('.slider', { width: '0%', duration: 1.4, ease: 'Power2.easeInOut' })
-      .from('.full-image', { scale: 1.6, duration: 1.4, ease: 'Power2.easeInOut', delay: -1.6 })
-      .from('.slider', { background: this.sliderColor })
-  },
-  beforeDestroy () {
-    this.imageAnimation.kill()
-  },
-  methods: {
-    animateImage () {
-      const tl = this.$gsap.timeline()
-      tl.to('.image-container', { duration: 0, visibility: 'visible' })
-        .to('.slider', { width: '0%', duration: 1.4, ease: 'Power2.easeInOut' })
-        .from('.full-image', { scale: 1.6, duration: 1.4, ease: 'Power2.easeInOut', delay: -1.6 })
-        .from('.slider', { background: this.pageBackgroundColor })
+  computed: {
+    type () {
+      if (this.myImage.mimeType.includes('image')) {
+        return 'image'
+      } else {
+        return 'video'
+      }
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
+  .centred-image {
+    padding: 10% 0;
+    .container {
+      position: relative;
+      max-width: 1440px;
+      width: 80%;
+      margin: auto;
+      aspect-ratio: 16/9;
+      @media only screen and (max-width: 800px) {
+       aspect-ratio: 1/1;
+       width: 100%;
+       margin: 0;
+     }
+      img, video {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+    @media only screen and (max-width: 800px) {
+      padding: 0;
+     }
+  }
 </style>

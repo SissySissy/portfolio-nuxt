@@ -1,12 +1,8 @@
 <template>
-  <div class="w-full full-image-container">
-    <div v-if="myImage.mimeType === 'video/mp4'" class="video-container">
-      <video class="video" preload="auto" loop muted autoPlay>
-        <source :src="myImage.mediaItemUrl" type="video/mp4">
-      </video>
-    </div>
-    <div v-else class="aspect-ratio--16-9 lg  image-container w-full">
-      <img class="full-image w-full h-full absolute top-0 right-0 left-0 bottom-0" :src="myImage.sourceUrl" alt="te">
+  <div class="wrapper">
+    <div class="image-container" :style="{ 'background': sliderColor }">
+      <video-component v-if="myImage.mimeType === 'video/mp4'" class="full-image" :my-video="myImage" />
+      <image-component v-else class="full-image" :my-image="myImage" />
       <div class="slider" />
     </div>
   </div>
@@ -45,8 +41,16 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .full-image-container {
+  .wrapper {
     max-height: 95vh;
     overflow: hidden;
+  }
+  .image-container {
+    width: 100%;
+    position: relative;
+    aspect-ratio: 16/9;
+    @media only screen and (max-width: 800px) {
+      aspect-ratio: 1/1;
+    }
   }
 </style>
