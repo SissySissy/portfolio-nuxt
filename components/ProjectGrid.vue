@@ -5,15 +5,8 @@
         {{ project.title }}
       </p>
       <div class="wrapper-grid-item">
-        <img v-if="project.acf.featureImage.mimeType.includes('image')" v-inview:class="['active']" :src="project.acf.featureImage.sourceUrl">
-        <video
-          v-if="project.acf.featureImage.mimeType.includes('video')"
-          v-inview:class="['active']"
-          :src="project.acf.featureImage.mediaItemUrl"
-          autoplay
-          loop
-          muted
-        />
+        <video-component v-if="project.acf.featureImage.mimeType === 'video/mp4'" v-inview:class="['active']" :my-video="project.acf.featureImage" />
+        <image-component v-else v-inview:class="['active']" :my-image="project.acf.featureImage" />
       </div>
     </NuxtLink>
   </div>
@@ -49,7 +42,7 @@ $row: 5vw;
     }
 
     .grid-item img, .grid-item video {
-        width: 0%;
+        width: 100%;
         height: 100%;
         object-fit: cover;
          -webkit-transition: -webkit-transform .5s cubic-bezier(.4,.22,.21,1.04);
@@ -64,7 +57,8 @@ $row: 5vw;
         }
 
         &.active {
-          width: 100%;
+          opacity: .7;
+          transition: transform .5s cubic-bezier(.4,.22,.21,1.04);
         }
     }
 

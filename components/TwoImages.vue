@@ -1,21 +1,17 @@
 <template>
-  <div class="two-images">
+  <div class="two-images w-full">
     <div v-for="(item, index) in images" :key="index" :style="{ 'background-color': item.color }" class="image-wrap" :class="{ middle: item.centred }">
-      <div v-if="item.image.mimeType === 'video/mp4'" class="video-container">
-        <video class="video" preload="auto" loop muted autoPlay>
-          <source :src="item.image.mediaItemUrl" type="video/mp4">
-        </video>
-      </div>
-      <template v-else>
-        <img class="full-image w-full h-full absolute top-0 right-0 left-0 bottom-0" :src="item.image.sourceUrl" alt="te">
-        <div class="slider" />
-      </template>
+      <video-component v-if="item.image.mimeType === 'video/mp4'" :my-video="item.image" />
+      <image-component v-else :my-image="item.image" />
     </div>
   </div>
 </template>
 
 <script>
+import ImageComponent from './ImageComponent.vue'
+import VideoComponent from './VideoComponent.vue'
 export default {
+  components: { ImageComponent, VideoComponent },
   props: {
     images: {
       type: Array,
@@ -28,12 +24,26 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .middle {
-    img {
-      padding:10%;
+  .image-wrap {
+    aspect-ratio: 8/9;
+    max-height: 95vh;
+    width: 50%;
+    position: relative;
+    @media only screen and (max-width: 800px) {
+      width: 100%;
+      aspect-ratio: 1/1;
     }
-  }
-  img {
-    object-fit: cover;
+    &.middle{
+      img, video {
+        padding: 15% 0;
+        width: 70%;
+        margin: auto;
+        @media only screen and (max-width: 800px) {
+        padding:0;
+        width: 100%;
+        margin: 0;
+        }
+      }
+    }
   }
 </style>
