@@ -1,5 +1,5 @@
 <template>
-  <header class="main-header w-full fixed top-0 left-0 right-0 z-50" :class="{ 'text-white' : menuIsActive, 'hidden': !showNavbar }">
+  <header class="main-header w-full fixed top-0 left-0 right-0 z-50" :class="{ 'text-white' : menuIsActive, 'menu-hidden': !showNavbar }">
     <div class="main-header-container z-50 relative max-width-16of24 mx-auto flex items-baseline md:my-10 justify-between">
       <NuxtLink to="/" class="logo">
         <span @click="closeMenu"> Silvia Monti </span>
@@ -69,7 +69,7 @@ export default {
 <style lang="scss" scoped >
   .main-header {
     transition: transform 200ms ease-in-out;
-    &.hidden {
+    &.menu-hidden {
     transform: translateY(-100px);
   }
   }
