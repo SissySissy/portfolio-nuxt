@@ -5,7 +5,7 @@
       <div class="menu-background" />
       <garden class="garden fade" />
       <div v-if="pageData" class="menu-container row text-center">
-        <div class="info pt-10 md:pt-48 col-12of24 offset-6of24 col-md-20of24 offset-md-2 col-sm-12of12 offset-sm-0">
+        <div class="info md:pt-48 col-12of24 offset-6of24 col-md-20of24 offset-md-2 col-sm-12of12 offset-sm-0">
           <h3 class="headline line font-serif italic text-2xl lg:text-3xl mb-10">
             {{ pageData.acfAbout.titleMenu }}
           </h3>
@@ -161,6 +161,10 @@ export default {
         }
       }
   }
+  .garden {
+    position: absolute;
+    bottom:0
+  }
   .hamburger-menu {
       display: none;
       z-index: 8;
@@ -186,6 +190,7 @@ export default {
           width: 100%;
           height: 100%;
           overflow: hidden;
+          overflow: scroll;
 
           .menu-background {
               top: 0;
