@@ -2,7 +2,7 @@
   <header class="main-header w-full fixed top-0 left-0 right-0 z-50" :class="{ 'text-white' : menuIsActive, 'hidden': !showNavbar }">
     <div class="main-header-container z-50 relative max-width-16of24 mx-auto flex items-baseline md:my-10 justify-between">
       <NuxtLink to="/" class="logo">
-        Silvia Monti
+        <span @click="closeMenu"> Silvia Monti </span>
       </NuxtLink>
       <button class="overline" :disabled="menuDisabled" @click="toggleMenu">
         {{ menuIsActive? '( Close )' : 'About' }}
@@ -48,6 +48,13 @@ export default {
       this.menuIsActive = !this.menuIsActive
       this.$store.commit('setPageNoScroll', this.menuIsActive)
       this.disableMenu()
+    },
+    closeMenu () {
+      if (this.menuIsActive) {
+        this.menuIsActive = !this.menuIsActive
+        this.$store.commit('setPageNoScroll', this.menuIsActive)
+        this.disableMenu()
+      }
     },
     disableMenu () {
       this.menuDisabled = !this.menuDisabled
