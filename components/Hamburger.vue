@@ -6,13 +6,13 @@
       <garden class="fade" />
       <div v-if="pageData" class="container-menu">
         <div class="info">
-          <div class="max-w-4xl fade text-center m-auto">
+          <div class="max-w-4xl fade md:text-center m-auto">
             <h3 class="line font-serif italic text-2xl lg:text-3xl mb-10">
               {{ pageData.acfAbout.titleMenu }}
             </h3>
-            <div class="line lead-paragraph font-serif mb-10" v-html="pageData.content" />
+            <div class="line lead-paragraph font-serif pb-10" v-html="pageData.content" />
             <div class="line interests">
-              <h4 class="overline m-10">
+              <h4 class="overline pb-10">
                 My focus
               </h4>
               <div v-for="interest in pageData.acfAbout.interests" :key="interest.label" class="pill" @mouseover="showBackgroundImage(interest.background.sourceUrl)" @mouseleave="hideBackgroundImage()">
@@ -168,15 +168,14 @@ export default {
     overflow: hidden;
   }
   .info {
-    margin-top: 150px ;
-    @media only screen and (max-width: 800px) {
-      margin-top: 80px ;
-    }
+    padding-top: 150px ;
     position: relative;
     height: 100%;
     width: 100%;
     overflow-y: auto;
-    padding: 24px;
+    @media only screen and (max-width: 800px) {
+      padding: 80px 24px 24px 24px;
+    }
   }
   .interests {
     a {
