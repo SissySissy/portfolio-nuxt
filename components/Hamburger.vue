@@ -134,11 +134,13 @@ export default {
     font-size: clamp(1.25rem, 3.5vw, 1.5rem);
     font-weight: 300;
     letter-spacing: .05rem;
-    a {
-        padding-bottom: 8px;
+    line-height: 1.75;
+    ::v-deep a {
+      position: relative;
+        padding-bottom: 4px;
         &:hover {
             &::before{
-          transform: scaleX(0);
+            transform: scaleX(0);
             }
         }
         &::before{
@@ -149,7 +151,7 @@ export default {
             right: 0;
             bottom: 0;
             height: 1px;
-            background: black;
+            background: currentColor;
             -webkit-transition: -webkit-transform .5s cubic-bezier(.4,.22,.21,1.04);
             transition: -webkit-transform .5s cubic-bezier(.4,.22,.21,1.04);
             -o-transition: -o-transform .5s cubic-bezier(.4,.22,.21,1.04);
