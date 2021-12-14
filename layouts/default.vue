@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper" :style="{ 'background': pageBackgroundColor }">
-    <main-header />
+    <main-header :style="{ 'background': pageBackgroundColor }" />
     <nuxt />
     <main-footer />
   </div>

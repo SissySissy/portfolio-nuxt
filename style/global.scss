@@ -17,6 +17,37 @@ body {
     }
 }
 
+.arrow { 
+    width: 100px;
+    height: 100px;
+    margin: 20px;
+    display: inline-block;
+    position: relative;
+  
+    &::before {
+      content: '';
+      display: block;
+      width: 30px;
+      height: 30px;
+      top: 50%;
+      left: 50%;
+      border-style: solid;
+      border-color: #000;
+      border-width: 2px 2px 0 0;
+      position: absolute;
+      transform-origin: 50% 50%;
+    }
+    &.right::before { 
+      transform: rotate(0deg); 
+      margin: -15px 0 0 -20px;
+    }
+    &.right::after { 
+      width: 40px;
+      height: 0;
+      border-width: 2px 0 0 0;
+      transform: translate(-26px, 0px) rotate(-45deg);
+    }
+}
 .spacer {
     padding: 250px 0;
 }
@@ -27,7 +58,7 @@ body {
     min-width: 100%;
 
     @media only screen and (max-width: $phone) {
-        padding: 180px 24px;
+        padding: 80px 24px;
     }
 }
   
@@ -48,9 +79,13 @@ div[class^="col-"]{
     text-indent:.25rem;
     margin: 0 16px 16px 0;
     transition: 0.3s ease-in-out;
+    cursor: pointer;
 
     &:hover {
         padding: 8px 20px;
+    }
+    &:last-child {
+        margin-right: 0;
     }
 }
 

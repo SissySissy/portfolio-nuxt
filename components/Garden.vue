@@ -423,10 +423,11 @@ svg * {
   transform-box: fill-box;
 }
 svg {
-  width :100%;
   position: absolute;
   bottom:0;
   left:0;
+  right: 0;
+  margin: auto;
 }
 
 @for $i from 1 through 7 {
