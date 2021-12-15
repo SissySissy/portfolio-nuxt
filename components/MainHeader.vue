@@ -1,5 +1,5 @@
 <template>
-  <header class="main-header w-full fixed top-0 left-0 right-0 z-50" :class="{ 'text-white' : menuIsActive, 'menu-hidden': !showNavbar }">
+  <header class="main-header w-full fixed top-0 left-0 right-0 z-50" :class="{ 'text-white' : menuIsActive, 'menu-hidden': !showNavbar }" :style="lastScrollPosition > 30 && showNavbar? {'background': color} : {'background': 'transparent'}">
     <div class="main-header-container z-50 relative max-width-16of24 mx-auto flex items-baseline md:my-10 justify-between">
       <NuxtLink to="/" class="logo">
         <span @click="closeMenu"> Silvia Monti </span>
@@ -16,6 +16,12 @@
 import Hamburger from '~/components/Hamburger.vue'
 export default {
   components: { Hamburger },
+  props: {
+    color: {
+      type: String,
+      default: () => ''
+    }
+  },
   data: () => {
     return {
       menuIsActive: false,
@@ -38,7 +44,7 @@ export default {
       if (currentScrollPosition < 0) {
         return
       }
-      if (Math.abs(currentScrollPosition - this.lastScrollPosition) < 60) {
+      if (Math.abs(currentScrollPosition - this.lastScrollPosition) < 30) {
         return
       }
       this.showNavbar = currentScrollPosition < this.lastScrollPosition
@@ -68,6 +74,7 @@ export default {
 
 <style lang="scss" scoped >
   .main-header {
+    color: currentColor;
     transition: transform 200ms ease-in-out;
     &.menu-hidden {
     transform: translateY(-100px);

@@ -1,6 +1,9 @@
 <template>
-  <div v-if="randomImage" :style="transformStyle" class="circle">
+  <div v-if="randomImage" class="circle" :class="{ onProject: hoveringOnProject}" :style="transformStyle">
     <div class="container">
+      <div class="overline">
+        view case
+      </div>
       <img v-if="type === 'image'" :src="randomImage.mediaItemUrl">
       <video v-if="type === 'video'" :src="randomImage.mediaItemUrl" autoplay loop muted />
     </div>
@@ -35,6 +38,18 @@ export default {
     },
     transformStyle () {
       return { transform: `translate(${this.pos.x}px, ${this.pos.y}px)` }
+    },
+    hoveringOnProject () {
+      return this.$store.state.hoveringOnProject
+    }
+  },
+  watch: {
+    hoveringOnProject (value) {
+      if (value) {
+        console.log(value)
+      } else {
+        console.log(value)
+      }
     }
   },
   mounted () {
@@ -113,12 +128,23 @@ export default {
       object-fit: cover;
       transform: scale(2);
       transition: all 0.2s;
+      pointer-events: none;
     }
     &:hover {
       .container {
         transform: translate(-50%, -50%) scale(1);
         img, video {
           transform: scale(1);
+        }
+      }
+    }
+    &.onProject{
+      pointer-events: none;
+      .container {
+         transform: translate(-50%, -50%) scale(.8);
+         background: white;
+         img, video {
+          opacity:0;
         }
       }
     }

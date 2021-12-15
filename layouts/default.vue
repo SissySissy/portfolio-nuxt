@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper" :style="{ 'background': pageBackgroundColor }">
-    <main-header :style="{ 'background': pageBackgroundColor }" />
+    <main-header :color="pageBackgroundColor" />
     <nuxt />
     <main-footer />
   </div>
@@ -34,6 +34,7 @@ export default {
 <style lang="scss">
   .wrapper {
     transition: all 0.3s;
+    color: white;
   }
 
   .page-enter-active,

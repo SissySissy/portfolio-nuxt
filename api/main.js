@@ -24,6 +24,7 @@ const ALL_PROJECTS = gql`
         projectId
         title
         acf {
+          subtitle
           featureImage {
             mediaItemUrl
             mimeType
@@ -52,7 +53,14 @@ const NEXT_PROJECT = gql`
             subtitle
             year
             featureImage {
+              mediaItemUrl
+              mimeType
               sourceUrl
+              altText
+              mediaDetails {
+                width
+                height
+              }
             }
           }
           content
@@ -74,7 +82,14 @@ query MyQuery {
           subtitle
           year
           featureImage {
+            mediaItemUrl
+            mimeType
             sourceUrl
+            altText
+            mediaDetails {
+              width
+              height
+            }
           }
         }
       }

@@ -1,10 +1,15 @@
 <template>
-  <div class="projects-grid mt-80">
+  <div class="projects-grid">
     <NuxtLink v-for="project of projects" :key="project.id" class="grid-item cursor-pointer relative" :to="`/projects/${project.projectId}`">
-      <p class="caption overline">
-        {{ project.title }}
-      </p>
-      <div class="wrapper-grid-item">
+      <div class="caption ml-4">
+        <span class="font-serif italic text-lg">
+          {{ project.title }}
+        </span>
+        <span class="overline">
+          — {{ project.acf.subtitle }}
+        </span>
+      </div>
+      <div class="wrapper-grid-item" @mouseover="$store.commit('toggleHoveringOnProject')" @mouseout="$store.commit('toggleHoveringOnProject')">
         <video-component v-if="project.acf.featureImage.mimeType === 'video/mp4'" v-inview:class="['active']" :my-video="project.acf.featureImage" />
         <image-component v-else v-inview:class="['active']" :my-image="project.acf.featureImage" />
       </div>
@@ -57,8 +62,8 @@ $row: 5vw;
         }
 
         &.active {
-          opacity: .7;
-          transition: transform .5s cubic-bezier(.4,.22,.21,1.04);
+          // opacity: .7;
+          // transition: transform .5s cubic-bezier(.4,.22,.21,1.04);
         }
     }
 
@@ -133,7 +138,11 @@ $row: 5vw;
     // }
     .caption {
       position: absolute;
-      top: -30px;
+      top: -35px;
+      .overline {
+        font-size: .8rem;
+        letter-spacing: .12;
+      }
     }
 
     .wrapper-grid-item {
