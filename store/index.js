@@ -1,6 +1,7 @@
 export const state = () => ({
-  pageBackgroundColor: '#F1F1F1',
-  pageNoScroll: false
+  pageBackgroundColor: '#222222',
+  pageNoScroll: false,
+  hoveringOnProject: false
 })
 
 export const mutations = {
@@ -9,5 +10,8 @@ export const mutations = {
   },
   changePageColor (state, payload) {
     state.pageBackgroundColor = payload
+  },
+  toggleHoveringOnProject (state, payload) {
+    state.hoveringOnProject = !state.hoveringOnProject
   }
 }
