@@ -43,15 +43,6 @@ export default {
       return this.$store.state.hoveringOnProject
     }
   },
-  watch: {
-    hoveringOnProject (value) {
-      if (value) {
-        console.log(value)
-      } else {
-        console.log(value)
-      }
-    }
-  },
   mounted () {
     this.running = true
     this.pickOneImage()
@@ -63,6 +54,7 @@ export default {
   },
   destroyed () {
     this.running = false
+    this.$store.commit('toggleHoveringOnProject')
     window.removeEventListener('mousemove', this.setMousePos)
   },
   methods: {
@@ -121,6 +113,9 @@ export default {
       transition: all 0.2s;
       animation: 2s startCircle;
     }
+    .overline {
+      display: none;
+    }
     img, video {
       display: block;
       width: 100%;
@@ -143,6 +138,15 @@ export default {
       .container {
          transform: translate(-50%, -50%) scale(.8);
          background: white;
+         position: relative;
+         display: flex;
+         align-items: center;
+         justify-content: center;
+         .overline {
+           position: absolute;
+           display: block;
+           color: black
+         }
          img, video {
           opacity:0;
         }

@@ -1,6 +1,9 @@
 <template>
-  <div v-if="nextProject" v-inview:class="['active']" class="next-content z-10">
-    <div class="circle">
+  <div v-if="nextProject" v-inview:class="['active']" class="next-content z-10" @mouseover="isHovering = true" @mouseout="isHovering = false">
+    <div
+      class="circle"
+      :class="{hovering: isHovering}"
+    >
       <video-component v-if="nextProject.acf.featureImage.mimeType === 'video/mp4'" class="full-image" :my-video="nextProject.acf.featureImage" />
       <image-component v-else :my-image="nextProject.acf.featureImage" />
     </div>
@@ -8,7 +11,7 @@
       <div class="mb-10 overline">
         ( Next )
       </div>
-      <NuxtLink class="medium-title italic" :to="`/projects/${nextProject.projectId}`" @mouseover="animateImage">
+      <NuxtLink class="medium-title italic" :to="`/projects/${nextProject.projectId}`">
         {{ nextProject.title }}
       </NuxtLink>
       <div class="mt-10 overline">
@@ -32,7 +35,8 @@ export default {
   },
   data: () => {
     return {
-      nextProject: null
+      nextProject: null,
+      isHovering: false
     }
   },
   async mounted () {
@@ -49,11 +53,6 @@ export default {
         query: FIRST_PROJECT
       })
       this.nextProject = firstProject.data?.projects?.edges[0]?.node
-    }
-  },
-  methods: {
-    animateImage () {
-      this.$gsap.from('.preview', { scale: 1.6, duration: 1.4, ease: 'Power2.easeInOut', delay: -1.6 })
     }
   }
 }
@@ -84,14 +83,19 @@ export default {
       transition: 0.5s ease-in-out;
       border-radius: 250px;
       transform: scale(.3);
+      z-index: -1;
+      opacity: .5;
     }
-    &.active .circle{
-      transform: scale(1);
-      // mix-blend-mode: exclusion;
-      img, video {
-        // filter: invert(1);
+    &.active {
+      .circle {
+        transform: scale(1);
+        &.hovering {
+          opacity: .8;
+          transform: scale(1.25);
+        }
       }
     }
+
     @media only screen and (max-width: 1250px) {
         padding: 170px 0;
     }
