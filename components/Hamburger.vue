@@ -3,22 +3,16 @@
     <div class="base-layer layer bg-jade" />
     <div class="menu-layer bg-emerald layer">
       <div class="menu-background" />
-      <garden class="fade" />
       <div v-if="pageData" class="container-menu">
-        <div class="info">
+        <div class="info" :class="isAnimating ? 'overflow-y-hidden': 'overflow-y-auto'">
           <div class="max-w-4xl fade md:text-center m-auto">
-            <h3 class="line font-serif italic text-2xl lg:text-3xl mb-10">
+            <h3 class="line font-serif italic headline text-2xl lg:text-3xl mb-10">
               {{ pageData.acfAbout.titleMenu }}
             </h3>
-            <div class="line lead-paragraph font-serif pb-10" v-html="pageData.content" />
-            <div class="line interests">
-              <h4 class="overline pb-10">
-                My focus
-              </h4>
-              <div v-for="interest in pageData.acfAbout.interests" :key="interest.label" class="pill" @mouseover="showBackgroundImage(interest.background.sourceUrl)" @mouseleave="hideBackgroundImage()">
-                {{ interest.label }}
-              </div>
-            </div>
+            <div class="line lead-paragraph font-serif pb-10 text-2xl" v-html="pageData.content" />
+            <!-- <div v-for="interest in pageData.acfAbout.interests" :key="interest.label" class="pill" @mouseover="showBackgroundImage(interest.background.sourceUrl)" @mouseleave="hideBackgroundImage()">
+              {{ interest.label }}
+            </div> -->
           </div>
         </div>
       </div>
@@ -27,10 +21,8 @@
 </template>
 
 <script>
-// import Garden from './Garden.vue'
 import { client, MAIN_PAGE } from '~/api/main'
 export default {
-  // components: { Garden },
   props: {
     state: {
       type: Boolean
@@ -38,7 +30,8 @@ export default {
   },
   data: () => {
     return {
-      pageData: null
+      pageData: null,
+      isAnimating: false
     }
   },
   watch: {
@@ -46,30 +39,33 @@ export default {
       if (!this.state) {
       // hide menu
         this.$gsap.to('.layer', {
+          onStart: () => { this.isAnimating = true },
           duration: 0.8,
           height: 0,
           ease: 'power3.inOut',
           stagger: {
             amount: -0.07
-          }
+          },
+          onComplete: () => { this.isAnimating = false }
         })
         this.$gsap.to('.hamburger-menu', {
           duration: 1,
           css: { display: 'none' }
         })
       } else {
-        // reveal TODO: menu on first render it jumps!
         this.$gsap.to('.hamburger-menu', {
           duration: 0,
           css: { display: 'block' }
         })
         this.$gsap.to('.layer', {
+          onStart: () => { this.isAnimating = true },
           duration: 0.8,
           height: '100%',
           ease: 'power3.inOut',
           stagger: {
             amount: 0.07
-          }
+          },
+          onComplete: () => { this.isAnimating = false }
         })
         // reveal content
         this.stagger('.line')
@@ -131,7 +127,6 @@ export default {
 
 <style lang="scss" scoped >
   .lead-paragraph {
-    font-size: clamp(1.25rem, 3.5vw, 1.5rem);
     font-weight: 300;
     letter-spacing: .05rem;
     line-height: 1.75;
@@ -172,7 +167,6 @@ export default {
     position: relative;
     height: 100%;
     width: 100%;
-    overflow-y: auto;
     @media only screen and (max-width: 800px) {
       padding: 80px 24px 24px 24px;
     }
