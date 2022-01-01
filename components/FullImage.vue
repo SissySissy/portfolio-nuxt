@@ -1,8 +1,8 @@
 <template>
   <div class="wrapper">
     <div class="image-container" :style="{ 'background': sliderColor }">
-      <video-component v-if="myImage.mimeType === 'video/mp4'" class="full-image" :my-video="myImage" />
-      <image-component v-else class="full-image" :my-image="myImage" />
+      <video-component v-if="image.mimeType === 'video/mp4'" class="full-image" :my-video="image" />
+      <image-component v-else class="full-image" :image="image" :sizes="sizes" />
       <div class="slider" />
     </div>
   </div>
@@ -11,9 +11,13 @@
 <script>
 export default {
   props: {
-    myImage: {
+    image: {
       type: Object,
       default: () => {}
+    },
+    sizes: {
+      type: String,
+      default: '100vw'
     },
     sliderColor: {
       type: String,

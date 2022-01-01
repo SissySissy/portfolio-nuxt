@@ -9,10 +9,15 @@
             <h3 class="line font-serif italic headline text-2xl lg:text-3xl mb-10">
               {{ pageData.acfAbout.titleMenu }}
             </h3>
-            <div class="line lead-paragraph font-serif pb-10 text-2xl" v-html="pageData.content" />
+            <!-- <div class="line lead-paragraph font-serif pb-10 text-2xl" v-html="pageData.content" /> -->
             <!-- <div v-for="interest in pageData.acfAbout.interests" :key="interest.label" class="pill" @mouseover="showBackgroundImage(interest.background.sourceUrl)" @mouseleave="hideBackgroundImage()">
               {{ interest.label }}
             </div> -->
+            <p class="line lead-paragraph font-serif pb-10 text-2xl">
+              I am a multidisciplinary designer & developer based in Switzerland, with a bachelor of arts in humanities and a master in Interaction Design. My work and specialization is predominantly focused within the fields of user experience, frontend development, and interaction design.
+              As I enjoy learning new things I gained experience across multiple mediums; from <span class="pill"> 3D modeling </span> to illustrations, creative coding, web interfaces, interactive installations, video games and physical computing.
+              This website is a selection of recent projects that I enjoyed creating, and want to make more of. I am glad to connect, listen and help, if you have an interesting creative project feel free to contact me.
+            </p>https://nucleoapp.com/app/
           </div>
         </div>
       </div>

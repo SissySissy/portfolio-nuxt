@@ -5,7 +5,7 @@
       :class="{hovering: isHovering}"
     >
       <video-component v-if="nextProject.acf.featureImage.mimeType === 'video/mp4'" class="full-image" :my-video="nextProject.acf.featureImage" />
-      <image-component v-else :my-image="nextProject.acf.featureImage" />
+      <image-component v-else :image="nextProject.acf.featureImage" />
     </div>
     <div class="z-10">
       <div class="mb-10 overline">
