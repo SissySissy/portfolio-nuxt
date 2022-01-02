@@ -8,9 +8,6 @@
       <centered-image v-else-if="item.fieldGroupName === 'Project_Acf_FlexibleContent_CenteredImage'" :image="item.image" :background-color="item.color" />
       <text-block v-else-if="item.fieldGroupName === 'Project_Acf_FlexibleContent_TextBlock'" :columns="item.columns" />
       <two-images v-else-if="item.fieldGroupName === 'Project_Acf_FlexibleContent_DoubleImage'" :images="item.images" />
-      <div v-else>
-        ""
-      </div>
     </div>
     <next-project :cursor="cursor" />
   </div>

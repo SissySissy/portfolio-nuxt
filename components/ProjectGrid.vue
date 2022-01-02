@@ -45,14 +45,14 @@ export default {
 $row: 5vw;
 
 .projects-grid {
+    padding: 0;
     display: grid;
     gap: 20px;
-    padding: 20px;
     grid-template-columns: repeat(6, 1fr);
     grid-auto-rows: $row;
 
     @screen md {
-      padding: 0;
+      padding: 20px;
     }
 
     .grid-item img, .grid-item video {
