@@ -1,11 +1,11 @@
 <template>
   <div>
     <my-hero :project="project" />
-    <full-image :my-image="project.acf.featureImage" :slider-color="project.acf.backgroundColor" />
+    <full-image :image="project.acf.featureImage" :slider-color="project.acf.backgroundColor" />
     <intro-project :project="project" />
     <div v-for="(item, index) in project.acf.flexibleContent" :key="index" class="w-full">
-      <full-image v-if="item.fieldGroupName === 'Project_Acf_FlexibleContent_FullImage'" :my-image="item.image" :slider-color="project.acf.backgroundColor" />
-      <centered-image v-else-if="item.fieldGroupName === 'Project_Acf_FlexibleContent_CenteredImage'" :my-image="item.image" :background-color="item.color" />
+      <full-image v-if="item.fieldGroupName === 'Project_Acf_FlexibleContent_FullImage'" :image="item.image" :slider-color="project.acf.backgroundColor" />
+      <centered-image v-else-if="item.fieldGroupName === 'Project_Acf_FlexibleContent_CenteredImage'" :image="item.image" :background-color="item.color" />
       <text-block v-else-if="item.fieldGroupName === 'Project_Acf_FlexibleContent_TextBlock'" :columns="item.columns" />
       <two-images v-else-if="item.fieldGroupName === 'Project_Acf_FlexibleContent_DoubleImage'" :images="item.images" />
       <div v-else>

@@ -25,14 +25,21 @@ const ALL_PROJECTS = gql`
         title
         acf {
           subtitle
+          category
           featureImage {
             mediaItemUrl
             mimeType
+            srcSet
             sourceUrl
             altText
             mediaDetails {
               width
               height
+              sizes {
+                name
+                sourceUrl
+                width
+              }
             }
           }
         }
@@ -51,15 +58,20 @@ const NEXT_PROJECT = gql`
           acf {
             link
             subtitle
-            year
             featureImage {
               mediaItemUrl
               mimeType
+              srcSet
               sourceUrl
               altText
               mediaDetails {
                 width
                 height
+                sizes {
+                  name
+                  sourceUrl
+                  width
+                }
               }
             }
           }
@@ -84,11 +96,17 @@ query MyQuery {
           featureImage {
             mediaItemUrl
             mimeType
+            srcSet
             sourceUrl
             altText
             mediaDetails {
               width
               height
+              sizes {
+                name
+                sourceUrl
+                width
+              }
             }
           }
         }
@@ -105,7 +123,20 @@ query MyQuery {
       interests {
         label
         background {
+          mediaItemUrl
+          mimeType
+          srcSet
           sourceUrl
+          altText
+          mediaDetails {
+            width
+            height
+            sizes {
+              name
+              sourceUrl
+              width
+            }
+          }
         }
       }
       techStack {
@@ -126,9 +157,20 @@ query MyQuery {
     acfAbout {
       heroFiles {
         image {
-          sourceUrl
           mediaItemUrl
           mimeType
+          srcSet
+          sourceUrl
+          altText
+          mediaDetails {
+            width
+            height
+            sizes {
+              name
+              sourceUrl
+              width
+            }
+          }
         }
       }
     }
@@ -149,35 +191,64 @@ const SINGLE_PROJECT = gql`
             category
             subtitle
             client
-            year
             link
             techList {
               techItem
             }
-
             featureImage {
-              sourceUrl
               mediaItemUrl
               mimeType
+              srcSet
+              sourceUrl
+              altText
+              mediaDetails {
+                width
+                height
+                sizes {
+                  name
+                  sourceUrl
+                  width
+                }
+              }
             }
             flexibleContent {
               ... on Project_Acf_FlexibleContent_FullImage {
                 fieldGroupName
                 image {
-                  id
-                  sourceUrl
                   mediaItemUrl
                   mimeType
+                  srcSet
+                  sourceUrl
+                  altText
+                  mediaDetails {
+                    width
+                    height
+                    sizes {
+                      name
+                      sourceUrl
+                      width
+                    }
+                  }
                 }
               }
               ... on Project_Acf_FlexibleContent_CenteredImage {
                 color
                 fieldGroupName
                 image {
-                  id
-                  sourceUrl
                   mediaItemUrl
                   mimeType
+                  srcSet
+                  sourceUrl
+                  altText
+                  mediaDetails {
+                    width
+                    height
+                    sizes {
+                      name
+                      sourceUrl
+                      width
+                    }
+                  }
                 }
               }
               ... on Project_Acf_FlexibleContent_DoubleImage {
@@ -186,10 +257,20 @@ const SINGLE_PROJECT = gql`
                   color
                   centred
                   image {
-                    id
-                    sourceUrl
                     mediaItemUrl
                     mimeType
+                    srcSet
+                    sourceUrl
+                    altText
+                    mediaDetails {
+                      width
+                      height
+                      sizes {
+                        name
+                        sourceUrl
+                        width
+                      }
+                    }
                   }
                 }
               }

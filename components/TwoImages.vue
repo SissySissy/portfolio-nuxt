@@ -2,7 +2,7 @@
   <div class="two-images w-full">
     <div v-for="(item, index) in images" :key="index" :style="{ 'background-color': item.color }" class="image-wrap" :class="{ middle: item.centred }">
       <video-component v-if="item.image.mimeType === 'video/mp4'" :my-video="item.image" />
-      <image-component v-else :my-image="item.image" />
+      <image-component v-else :image="item.image" />
     </div>
   </div>
 </template>

@@ -1,8 +1,8 @@
 <template>
   <div :style="{ 'background-color': backgroundColor }" class="centred-image w-full">
     <div class="container">
-      <img v-if="type === 'image'" :src="myImage.mediaItemUrl">
-      <video v-if="type === 'video'" :src="myImage.mediaItemUrl" autoplay loop muted />
+      <img v-if="type === 'image'" :src="image.mediaItemUrl">
+      <video v-if="type === 'video'" :src="image.mediaItemUrl" autoplay loop muted />
     </div>
   </div>
 </template>
@@ -10,7 +10,7 @@
 <script>
 export default {
   props: {
-    myImage: {
+    image: {
       type: Object,
       default: () => {}
     },
@@ -26,7 +26,7 @@ export default {
   },
   computed: {
     type () {
-      if (this.myImage.mimeType.includes('image')) {
+      if (this.image.mimeType.includes('image')) {
         return 'image'
       } else {
         return 'video'
