@@ -1,7 +1,7 @@
 <template>
   <div class=" text-white">
-    <div class="hero z-20">
-      <h1 class="project-title italic px-10">
+    <div class="hero z-20 px-10">
+      <h1 class="project-title italic">
         Portfolio 2022
       </h1>
     </div>
@@ -48,7 +48,7 @@ export default {
     justify-content: center;
     }
   .project-title {
-    font-size: clamp(6rem, 10vw , 14rem);
+    font-size: clamp(5rem, 10vw , 14rem);
     letter-spacing: .05rem;
     font-family: Cardo, serif;
     line-height: 1.15;
