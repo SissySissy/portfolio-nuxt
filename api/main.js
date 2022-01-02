@@ -57,7 +57,6 @@ const NEXT_PROJECT = gql`
           acf {
             link
             subtitle
-            year
             featureImage {
               mediaItemUrl
               mimeType
@@ -191,7 +190,6 @@ const SINGLE_PROJECT = gql`
             category
             subtitle
             client
-            year
             link
             techList {
               techItem
