@@ -1,8 +1,8 @@
 <template>
   <div class=" text-white">
     <div class="hero z-20">
-      <h1 class="project-title italic">
-        Hi, It's Silvia, <br> Interaction Design is <br>my Passion
+      <h1 class="project-title italic px-10">
+        Portfolio 2022
       </h1>
     </div>
     <project-grid :projects="projects" />
@@ -48,7 +48,7 @@ export default {
     justify-content: center;
     }
   .project-title {
-    font-size: clamp(4rem, 5vw , 8rem);
+    font-size: clamp(6rem, 10vw , 14rem);
     letter-spacing: .05rem;
     font-family: Cardo, serif;
     line-height: 1.15;
