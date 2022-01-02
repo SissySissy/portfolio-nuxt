@@ -92,7 +92,6 @@ query MyQuery {
         acf {
           link
           subtitle
-          year
           featureImage {
             mediaItemUrl
             mimeType
