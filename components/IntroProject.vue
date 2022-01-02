@@ -6,6 +6,7 @@
       </div>
       <div class="overline mb-10">
         {{ project.acf.client }}
+        <a v-if="project.acf.link" class="link relative"> {{ project.acf.link }} </a>
       </div>
       <div class="font-serif mb-10 lg:mb-0" v-html="project.content" />
     </div>
