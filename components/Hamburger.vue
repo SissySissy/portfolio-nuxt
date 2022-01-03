@@ -14,10 +14,10 @@
               {{ interest.label }}
             </div> -->
             <p class="line lead-paragraph font-serif pb-10 text-2xl">
-              I am a multidisciplinary designer & developer based in Switzerland, with a bachelor of arts in humanities and a master in Interaction Design. My work and specialization is predominantly focused within the fields of user experience, frontend development, and interaction design.
-              As I enjoy learning new things I gained experience across multiple mediums; from <span class="pill"> 3D modeling </span> to illustrations, creative coding, web interfaces, interactive installations, video games and physical computing.
-              This website is a selection of recent projects that I enjoyed creating, and want to make more of. I am glad to connect, listen and help, if you have an interesting creative project feel free to contact me.
-            </p>https://nucleoapp.com/app/
+              I am an interaction designer & creative developer based in Switzerland. With a bachelor's degree in Humanities and a master in Interaction Design, I specialise in thoughtful  user  experiences, frontend development and 3D modeling. <br>
+              When I have time off I love to go for long walks, paint and play music. I am also currently working on and off on my own little game.
+              <br>This website is a small selection of diverse projects that I enjoyed creating, and want to make more of. Feel free to check out my work on <a class="link relative">Artstation</a> and <a class="link">Codepen</a>, and if you're so inclined, reach out on <a class="link">LinkedIn</a>. <br> Thank you for visiting.
+            </p>
           </div>
         </div>
       </div>
