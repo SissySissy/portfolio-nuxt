@@ -9,15 +9,7 @@
             <h3 class="line font-serif italic headline text-2xl lg:text-3xl mb-10 hidden md:block">
               {{ pageData.acfAbout.titleMenu }}
             </h3>
-            <!-- <div class="line lead-paragraph font-serif pb-10 text-2xl" v-html="pageData.content" /> -->
-            <!-- <div v-for="interest in pageData.acfAbout.interests" :key="interest.label" class="pill" @mouseover="showBackgroundImage(interest.background.sourceUrl)" @mouseleave="hideBackgroundImage()">
-              {{ interest.label }}
-            </div> -->
-            <p class="line lead-paragraph font-serif pb-10">
-              I am an interaction designer & creative developer based in Switzerland. With a bachelor's degree in Humanities and a master in Interaction Design, I specialise in thoughtful  user  experiences, frontend development and 3D modeling. <br>
-              When I have time off I love to go for long walks, paint and play music. I am also currently working on and off on my own little game.
-              <br>This website is a small selection of diverse projects that I enjoyed creating, and want to make more of. Feel free to check out my work on <a class="link relative">Artstation</a> and <a class="link">Codepen</a>, and if you're so inclined, reach out on <a class="link relative">LinkedIn</a>. <br> Thank you for visiting.
-            </p>
+            <div class="line lead-paragraph font-serif pb-10" v-html="pageData.content" />
           </div>
         </div>
       </div>
