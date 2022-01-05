@@ -9,6 +9,8 @@
 </template>
 
 <script>
+let resetTimeout = null
+
 export default {
   props: {
     image: { type: Object, required: true },
@@ -26,7 +28,6 @@ export default {
 
       return {
         opacity: this.sliceHeight <= 1 ? 0 : 1,
-        '--height': `${this.sliceHeight}px`,
         '--width': `${width}px`,
         transform: `rotate(${this.direction ? 15 : -15}deg)`
       }
@@ -41,7 +42,10 @@ export default {
   },
   methods: {
     onResize () {
-      this.sliceHeight = this.$refs.container.clientHeight / 3
+      clearTimeout(resetTimeout)
+      resetTimeout = setTimeout(() => {
+        this.sliceHeight = this.$refs.container.clientHeight / 3
+      }, 150)
     }
   }
 }
@@ -71,7 +75,8 @@ export default {
   .slice {
     width: 100%;
     height: 100%;
-    background-size: var(--width) var(--height);
+    background-size: var(--width) 100%;
+    background-repeat: repeat;
     &:nth-child(1) {
       animation: slide-right 60s linear infinite;
     }
