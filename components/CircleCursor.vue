@@ -61,6 +61,10 @@ export default {
     setMousePos (e) {
       this.mouse.x = e.pageX
       this.mouse.y = e.pageY
+      if (!this.running) {
+        this.running = true
+        this.animate()
+      }
     },
     pickOneImage () {
       if (!this.images || this.images.length === 0) {
@@ -81,6 +85,9 @@ export default {
     },
     animate () {
       const dist = Math.sqrt((this.mouse.x - this.pos.x) ** 2 + (this.mouse.y - this.pos.y) ** 2)
+      if (dist < 45) {
+        this.running = false
+      }
       const mult = (dist - 40) / window.innerWidth * 0.4
 
       this.pos.x = this.pos.x + (this.mouse.x - this.pos.x) * mult

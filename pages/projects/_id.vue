@@ -8,6 +8,7 @@
       <centered-image v-else-if="item.fieldGroupName === 'Project_Acf_FlexibleContent_CenteredImage'" :image="item.image" :background-color="item.color" />
       <text-block v-else-if="item.fieldGroupName === 'Project_Acf_FlexibleContent_TextBlock'" :columns="item.columns" />
       <two-images v-else-if="item.fieldGroupName === 'Project_Acf_FlexibleContent_DoubleImage'" :images="item.images" />
+      <tiled-block v-else-if="item.fieldGroupName === 'Project_Acf_FlexibleContent_TiledMockups'" :image="item.image" :direction="item.direction" :background-color="item.color" />
     </div>
     <next-project :cursor="cursor" />
   </div>
@@ -21,10 +22,11 @@ import IntroProject from '~/components/IntroProject.vue'
 import MyHero from '~/components/MyHero.vue'
 import NextProject from '~/components/NextProject.vue'
 import TextBlock from '~/components/TextBlock.vue'
+import TiledBlock from '~/components/TiledBlock.vue'
 import TwoImages from '~/components/TwoImages.vue'
 
 export default {
-  components: { MyHero, FullImage, IntroProject, CenteredImage, TextBlock, TwoImages, NextProject },
+  components: { MyHero, FullImage, IntroProject, CenteredImage, TextBlock, TwoImages, NextProject, TiledBlock },
   async asyncData ({ params, app }) {
     const id = parseInt(params.id)
 

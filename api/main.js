@@ -281,6 +281,24 @@ const SINGLE_PROJECT = gql`
                   fieldGroupName
                 }
               }
+              ... on Project_Acf_FlexibleContent_QuoteBlock {
+                author
+                fieldGroupName
+                quote
+              }
+              ... on Project_Acf_FlexibleContent_TiledMockups {
+                color
+                direction
+                fieldGroupName
+                image {
+                  altText
+                  sourceUrl
+                  mediaDetails {
+                    height
+                    width
+                  }
+                }
+              }
             }
           }
         }
