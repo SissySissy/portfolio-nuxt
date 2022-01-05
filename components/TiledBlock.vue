@@ -1,9 +1,9 @@
 <template>
   <div class="wrapper" :style="{ 'background': backgroundColor }">
     <div ref="container" class="slice-slider" :style="containerCss">
-      <div :style="{ 'background-image': `url(${responsiveImage})` }" class="slice" />
-      <div :style="{ 'background-image': `url(${responsiveImage})` }" class="slice" />
-      <div :style="{ 'background-image': `url(${responsiveImage})` }" class="slice" />
+      <div :style="{ 'background-image': `url(${responsiveImage})`, 'background-position': `${sliceWidth / 3}px 0` }" class="slice" />
+      <div :style="{ 'background-image': `url(${responsiveImage})`, 'background-position': `0 0` }" class="slice" />
+      <div :style="{ 'background-image': `url(${responsiveImage})`, 'background-position': `${-sliceWidth / 3}px 0` }" class="slice" />
     </div>
   </div>
 </template>
@@ -23,12 +23,13 @@ export default {
     }
   },
   computed: {
+    sliceWidth () {
+      return this.image.mediaDetails.width / this.image.mediaDetails.height * this.sliceHeight
+    },
     containerCss () {
-      const width = this.image.mediaDetails.width / this.image.mediaDetails.height * this.sliceHeight
-
       return {
         opacity: this.sliceHeight <= 1 ? 0 : 1,
-        '--width': `${width}px`,
+        '--width': `${this.sliceWidth}px`,
         transform: `rotate(${this.direction ? 15 : -15}deg)`
       }
     },
@@ -86,28 +87,15 @@ export default {
     background-size: var(--width) 100%;
     background-repeat: repeat;
 
-    &:nth-child(1) {
-      animation: slide-right 60s linear infinite;
-    }
-    &:nth-child(2) {
-      animation: slide-left 100s linear infinite;
-    }
-    &:nth-child(3) {
-      animation: slide-right 50s -10s linear infinite;
-    }
-
-    @media (max-width: theme('screens.md')), (prefers-reduced-motion) {
+    @screen md {
       &:nth-child(1) {
-        background-position: calc(var(--width) / 3) 0;
-        animation: none;
+        animation: slide-right 60s linear infinite;
       }
       &:nth-child(2) {
-        background-position: 0 0;
-        animation: none;
+        animation: slide-left 100s linear infinite;
       }
       &:nth-child(3) {
-        background-position: calc(var(--width) / 3 * -1 ) 0;
-        animation: none;
+        animation: slide-right 50s -10s linear infinite;
       }
     }
   }
