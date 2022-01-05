@@ -296,6 +296,11 @@ const SINGLE_PROJECT = gql`
                   mediaDetails {
                     height
                     width
+                    sizes {
+                      name
+                      sourceUrl
+                      height
+                    }
                   }
                 }
               }
