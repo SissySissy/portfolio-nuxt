@@ -1,9 +1,9 @@
 <template>
   <div class="wrapper" :style="{ 'background': backgroundColor }">
     <div ref="container" class="slice-slider" :style="containerCss">
-      <div :style="{ 'background-image': `url(${image.sourceUrl})` }" class="slice" />
-      <div :style="{ 'background-image': `url(${image.sourceUrl})` }" class="slice" />
-      <div :style="{ 'background-image': `url(${image.sourceUrl})` }" class="slice" />
+      <div :style="{ 'background-image': `url(${responsiveImage})` }" class="slice" />
+      <div :style="{ 'background-image': `url(${responsiveImage})` }" class="slice" />
+      <div :style="{ 'background-image': `url(${responsiveImage})` }" class="slice" />
     </div>
   </div>
 </template>
@@ -31,6 +31,11 @@ export default {
         '--width': `${width}px`,
         transform: `rotate(${this.direction ? 15 : -15}deg)`
       }
+    },
+    responsiveImage () {
+      const sortedSizes = [...this.image.mediaDetails.sizes].filter(size => size.name !== 'thumbnail').sort((a, b) => a.height - b.height)
+      const responsiveImageUrl = sortedSizes.find(size => size.height > this.sliceHeight * (process.client ? window.devicePixelRatio : 1))
+      return responsiveImageUrl?.sourceUrl || this.image.sourceUrl
     }
   },
   mounted () {
@@ -42,9 +47,12 @@ export default {
   },
   methods: {
     onResize () {
-      clearTimeout(resetTimeout)
+      if (resetTimeout) {
+        clearTimeout(resetTimeout)
+      }
       resetTimeout = setTimeout(() => {
         this.sliceHeight = this.$refs.container.clientHeight / 3
+        resetTimeout = null
       }, 150)
     }
   }
@@ -56,7 +64,7 @@ export default {
     max-height: 95vh;
     overflow: hidden;
     position: relative;
-    aspect-ratio: 16 / 9;
+    aspect-ratio: 5 / 4;
     min-width: 100%;
   }
   .slice-slider {
@@ -77,6 +85,7 @@ export default {
     height: 100%;
     background-size: var(--width) 100%;
     background-repeat: repeat;
+
     &:nth-child(1) {
       animation: slide-right 60s linear infinite;
     }
@@ -85,6 +94,21 @@ export default {
     }
     &:nth-child(3) {
       animation: slide-right 50s -10s linear infinite;
+    }
+
+    @media (max-width: theme('screens.md')), (prefers-reduced-motion) {
+      &:nth-child(1) {
+        background-position: calc(var(--width) / 3) 0;
+        animation: none;
+      }
+      &:nth-child(2) {
+        background-position: 0 0;
+        animation: none;
+      }
+      &:nth-child(3) {
+        background-position: calc(var(--width) / 3 * -1 ) 0;
+        animation: none;
+      }
     }
   }
 
