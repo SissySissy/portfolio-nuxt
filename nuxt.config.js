@@ -1,4 +1,7 @@
 export default {
+  env: {
+    apiEndpoint: process.env.API_ENDPOINT || 'http://silviamonti-wordpress.morme.ch/graphql'
+  },
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: 'Silvia Monti — Design & Code',
