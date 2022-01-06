@@ -6,11 +6,9 @@ import {
 } from '@apollo/client/core'
 import fetch from 'cross-fetch'
 
-const serverUrl = 'http://silviamonti-wordpress.morme.ch/graphql'
-
 const client = new ApolloClient({
   link: createHttpLink({
-    uri: serverUrl,
+    uri: process.env.apiEndpoint,
     fetch
   }),
   cache: new InMemoryCache()
