@@ -1,5 +1,8 @@
 FROM node:lts-alpine
 
+ARG API_ENDPOINT
+ENV API_ENDPOINT=$API_ENDPOINT
+
 RUN mkdir -p /usr/src/nuxt-app
 WORKDIR /usr/src/nuxt-app
 
