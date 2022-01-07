@@ -1,6 +1,6 @@
 export default {
   env: {
-    apiEndpoint: process.env.API_ENDPOINT || 'http://silviamonti-wordpress.morme.ch/graphql'
+    apiEndpoint: process.env.API_ENDPOINT || 'https://api.silviamonti.ch/graphql'
   },
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
