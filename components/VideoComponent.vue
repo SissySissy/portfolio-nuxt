@@ -7,6 +7,7 @@
     preload="auto"
     loop
     muted
+    aria-hidden="true"
   >
     <source :src="myVideo.mediaItemUrl" type="video/mp4">
   </video>

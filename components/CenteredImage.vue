@@ -1,8 +1,8 @@
 <template>
   <div :style="{ 'background-color': backgroundColor }" class="centred-image w-full">
     <div class="container">
-      <img v-if="type === 'image'" :src="image.mediaItemUrl">
-      <video v-if="type === 'video'" :src="image.mediaItemUrl" autoplay loop muted />
+      <video-component v-if="image.mimeType === 'video/mp4'" :my-video="image" />
+      <image-component v-else :image="image" :sizes="sizes" />
     </div>
   </div>
 </template>

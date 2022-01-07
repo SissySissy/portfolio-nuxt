@@ -6,9 +6,9 @@
       <div v-if="pageData" class="container-menu">
         <div class="info" :class="isAnimating ? 'overflow-y-hidden': 'overflow-y-auto'">
           <div class="max-w-4xl fade md:text-center m-auto">
-            <h3 class="line font-serif italic headline text-2xl lg:text-3xl mb-10 hidden md:block">
+            <h2 class="line font-serif italic headline text-2xl lg:text-3xl mb-10 hidden md:block">
               {{ pageData.acfAbout.titleMenu }}
-            </h3>
+            </h2>
             <div class="line lead-paragraph font-serif pb-10" v-html="pageData.content" />
           </div>
         </div>

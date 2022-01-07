@@ -1,14 +1,19 @@
 <template>
-  <header class="main-header w-full fixed top-0 left-0 right-0 z-50" :class="{ 'text-white' : menuIsActive, 'menu-hidden': !showNavbar }" :style="lastScrollPosition > 30 && showNavbar? {'background': color} : {'background': 'transparent'}">
+  <header
+    class="main-header w-full fixed top-0 left-0 right-0 z-50"
+    :class="{ 'text-white' : menuIsActive, 'menu-hidden': !showNavbar }"
+    :style="lastScrollPosition > 30 && showNavbar? {'background': color} : {'background': 'transparent'}"
+    role="navigation"
+  >
     <div class="main-header-container z-50 relative max-width-16of24 mx-auto flex items-baseline md:my-10 justify-between">
       <NuxtLink to="/" class="logo">
         <span @click="closeMenu"> Silvia Monti </span>
       </NuxtLink>
-      <button class="overline" :disabled="menuDisabled" @click="toggleMenu">
+      <button class="overline" :disabled="menuDisabled" :aria-expanded="menuIsActive" @click="toggleMenu">
         {{ menuIsActive? '( Close )' : 'About' }}
       </button>
     </div>
-    <hamburger :state="menuIsActive" />
+    <hamburger :state="menuIsActive" :aria-hidden="!menuIsActive" />
   </header>
 </template>
 
@@ -53,6 +58,7 @@ export default {
     toggleMenu () {
       this.menuIsActive = !this.menuIsActive
       this.$store.commit('setPageNoScroll', this.menuIsActive)
+      this.$store.commit('toggleMenuIsExpanded')
       this.disableMenu()
     },
     closeMenu () {
