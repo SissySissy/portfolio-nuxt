@@ -11,22 +11,17 @@
 </template>
 
 <script>
-import { ALL_PROJECTS, IMAGES_ARRAY, client } from '~/api/main'
+import { ALL_PROJECTS, IMAGES_ARRAY } from '~/api/main'
 import CircleCursor from '~/components/CircleCursor.vue'
 import ProjectGrid from '~/components/ProjectGrid.vue'
 export default {
   components: { ProjectGrid, CircleCursor },
-  async asyncData () {
-    const res = await client.query({
-      query: ALL_PROJECTS
-    })
-    const imagesArrayReq = await client.query({
-      query: IMAGES_ARRAY
-    })
+  async asyncData ({ $graphql }) {
+    const projectsRes = await $graphql.default.request(ALL_PROJECTS)
+    const projects = projectsRes?.projects?.nodes || []
 
-    const projects = res.data?.projects?.nodes || []
-
-    const images = imagesArrayReq.data?.page?.acfAbout?.heroFiles || []
+    const imagesRes = await $graphql.default.request(IMAGES_ARRAY)
+    const images = imagesRes?.page?.acfAbout?.heroFiles || []
 
     return {
       projects,
