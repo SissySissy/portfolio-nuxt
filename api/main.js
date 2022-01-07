@@ -1,19 +1,4 @@
-import {
-  ApolloClient,
-  createHttpLink,
-  InMemoryCache,
-  gql
-} from '@apollo/client/core'
-import fetch from 'cross-fetch'
-
-const client = new ApolloClient({
-  ssrMode: true,
-  link: createHttpLink({
-    uri: process.env.apiEndpoint,
-    fetch
-  }),
-  cache: new InMemoryCache()
-})
+import { gql } from 'nuxt-graphql-request'
 
 const ALL_PROJECTS = gql`
   query MyQuery {
@@ -310,4 +295,4 @@ const SINGLE_PROJECT = gql`
     }
   }`
 
-export { client, ALL_PROJECTS, MAIN_PAGE, IMAGES_ARRAY, SINGLE_PROJECT, NEXT_PROJECT, FIRST_PROJECT }
+export { ALL_PROJECTS, MAIN_PAGE, IMAGES_ARRAY, SINGLE_PROJECT, NEXT_PROJECT, FIRST_PROJECT }

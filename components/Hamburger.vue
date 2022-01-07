@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import { client, MAIN_PAGE } from '~/api/main'
+import { MAIN_PAGE } from '~/api/main'
 export default {
   props: {
     state: {
@@ -71,11 +71,8 @@ export default {
     }
   },
   async mounted () {
-    const pageReq = await client.query({
-      query: MAIN_PAGE
-    })
-
-    this.pageData = pageReq.data?.page || null
+    const res = await this.$graphql.default.request(MAIN_PAGE)
+    this.pageData = res?.page || null
   },
   methods: {
     fadeIn (node) {

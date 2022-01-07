@@ -24,7 +24,7 @@
 <script>
 import ImageComponent from './ImageComponent.vue'
 import VideoComponent from './VideoComponent.vue'
-import { client, NEXT_PROJECT, FIRST_PROJECT } from '~/api/main'
+import { NEXT_PROJECT, FIRST_PROJECT } from '~/api/main'
 export default {
   components: { ImageComponent, VideoComponent },
   props: {
@@ -41,18 +41,12 @@ export default {
   },
   async mounted () {
     const cursor = this.cursor
-    const nextPageReq = await client.query({
-      query: NEXT_PROJECT,
-      variables: {
-        cursor
-      }
-    })
-    this.nextProject = nextPageReq.data?.projects?.edges?.[0]?.node || null
+    const nextPageRes = await this.$graphql.default.request(NEXT_PROJECT, { cursor })
+    this.nextProject = nextPageRes?.projects?.edges?.[0]?.node || null
+
     if (!this.nextProject) {
-      const firstProject = await client.query({
-        query: FIRST_PROJECT
-      })
-      this.nextProject = firstProject.data?.projects?.edges[0]?.node
+      const firstProjectRes = await this.$graphql.default.request(FIRST_PROJECT)
+      this.nextProject = firstProjectRes?.projects?.edges[0]?.node
     }
   }
 }

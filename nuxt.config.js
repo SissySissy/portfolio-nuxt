@@ -1,7 +1,4 @@
 export default {
-  env: {
-    apiEndpoint: process.env.API_ENDPOINT || 'https://api.silviamonti.ch/graphql'
-  },
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: 'Silvia Monti — Design & Code',
@@ -38,6 +35,7 @@ export default {
     '@nuxtjs/eslint-module',
     // https://go.nuxtjs.dev/tailwindcss
     '@nuxtjs/tailwindcss',
+    'nuxt-graphql-request',
     'nuxt-gsap-module'
   ],
 
@@ -45,6 +43,14 @@ export default {
     extraPlugins: {
       scrollTo: true,
       scrollTrigger: true
+    }
+  },
+
+  graphql: {
+    clients: {
+      default: {
+        endpoint: process.env.API_ENDPOINT || 'https://api.silviamonti.ch/graphql'
+      }
     }
   },
 

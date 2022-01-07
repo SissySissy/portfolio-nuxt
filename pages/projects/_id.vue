@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import { client, SINGLE_PROJECT } from '~/api/main'
+import { SINGLE_PROJECT } from '~/api/main'
 import CenteredImage from '~/components/CenteredImage.vue'
 import FullImage from '~/components/FullImage.vue'
 import IntroProject from '~/components/IntroProject.vue'
@@ -27,27 +27,17 @@ import TwoImages from '~/components/TwoImages.vue'
 
 export default {
   components: { MyHero, FullImage, IntroProject, CenteredImage, TextBlock, TwoImages, NextProject, TiledBlock },
-  async asyncData ({ params, app }) {
+  async asyncData ({ $graphql, params, app }) {
     const id = parseInt(params.id)
 
-    try {
-      const res = await client.query({
-        query: SINGLE_PROJECT,
-        variables: {
-          id
-        }
-      })
-      const project = res.data?.projects?.edges?.[0]?.node || null
-      const cursor = res.data?.projects?.edges?.[0]?.cursor || null
-      return {
-        project,
-        cursor
-      }
-    } catch (err) {
-      console.log(err)
-      return {
-        project: null
-      }
+    const res = await $graphql.default.request(SINGLE_PROJECT, { id })
+
+    const project = res?.projects?.edges?.[0]?.node || null
+    const cursor = res?.projects?.edges?.[0]?.cursor || null
+
+    return {
+      project,
+      cursor
     }
   },
   mounted () {
