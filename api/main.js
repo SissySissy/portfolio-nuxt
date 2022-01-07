@@ -7,6 +7,7 @@ import {
 import fetch from 'cross-fetch'
 
 const client = new ApolloClient({
+  ssrMode: true,
   link: createHttpLink({
     uri: process.env.apiEndpoint,
     fetch
