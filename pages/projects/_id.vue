@@ -30,17 +30,24 @@ export default {
   async asyncData ({ params, app }) {
     const id = parseInt(params.id)
 
-    const res = await client.query({
-      query: SINGLE_PROJECT,
-      variables: {
-        id
+    try {
+      const res = await client.query({
+        query: SINGLE_PROJECT,
+        variables: {
+          id
+        }
+      })
+      const project = res.data?.projects?.edges?.[0]?.node || null
+      const cursor = res.data?.projects?.edges?.[0]?.cursor || null
+      return {
+        project,
+        cursor
       }
-    })
-    const project = res.data?.projects?.edges?.[0]?.node || null
-    const cursor = res.data?.projects?.edges?.[0]?.cursor || null
-    return {
-      project,
-      cursor
+    } catch (err) {
+      console.log(err)
+      return {
+        project: null
+      }
     }
   },
   mounted () {
