@@ -185,34 +185,6 @@ p {
     }  
   }
 
-.two-images {
-    width: 100%;
-    height: 56.25%;
-    display: flex;
-      
-    position: relative;
-
-    @media only screen and (max-width: 600px) {
-        height: auto;
-        flex-wrap: wrap;
-    }
-
-      .image-wrap {
-
-        width: 100%;
-
-        @media only screen and (max-width: 600px) {
-           aspect-ratio: 1;
-        }
-
-        img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-      }
-  }
-
 a.link {
     position: relative;
     padding-bottom: 8px;

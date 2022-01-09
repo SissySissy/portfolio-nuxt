@@ -35,8 +35,6 @@ export default {
     const project = res?.projects?.edges?.[0]?.node || null
     const cursor = res?.projects?.edges?.[0]?.cursor || null
 
-    console.log(project.excerpt)
-
     const meta = {
       title: project.title,
       meta: [
