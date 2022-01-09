@@ -28,6 +28,9 @@ export default {
       images
     }
   },
+  head () {
+    return this.meta
+  },
   mounted () {
     this.$store.commit('changePageColor', '#222222')
   }

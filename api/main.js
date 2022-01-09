@@ -9,6 +9,7 @@ const ALL_PROJECTS = gql`
         title
         acf {
           subtitle
+          interactiveColor
           category
           featureImage {
             mediaItemUrl
@@ -40,7 +41,6 @@ const NEXT_PROJECT = gql`
           projectId
           title
           acf {
-            link
             subtitle
             featureImage {
               mediaItemUrl
@@ -74,7 +74,6 @@ query MyQuery {
         projectId
         title
         acf {
-          link
           subtitle
           featureImage {
             mediaItemUrl
@@ -168,13 +167,22 @@ const SINGLE_PROJECT = gql`
         node {
           id
           title
+          excerpt(format: RAW)
           content(format: RENDERED)
           acf {
             backgroundColor
+            interactiveColor
             category
             subtitle
             client
-            link
+            links {
+              icon
+              link {
+                title
+                url
+                target
+              }
+            }
             techList {
               techItem
             }

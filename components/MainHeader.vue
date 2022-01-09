@@ -66,6 +66,7 @@ export default {
         this.menuIsActive = !this.menuIsActive
         this.$store.commit('setPageNoScroll', this.menuIsActive)
         this.disableMenu()
+        this.$store.commit('toggleMenuIsExpanded')
       }
     },
     disableMenu () {

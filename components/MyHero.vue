@@ -3,9 +3,11 @@
     <h1 class="project-title w-full italic text-center">
       {{ project.title }}
     </h1>
-    <NuxtLink class="link overline absolute left-10 bottom-10 cursor-pointer text-white" to="/">
-      ( back )
-    </NuxtLink>
+    <div class="absolute left-10 bottom-10">
+      <NuxtLink class="link overline text-white" to="/">
+        ( back )
+      </NuxtLink>
+    </div>
   </div>
 </template>
 

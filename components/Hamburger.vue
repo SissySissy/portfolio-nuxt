@@ -124,6 +124,11 @@ export default {
     font-weight: 300;
     letter-spacing: .05rem;
     line-height: 1.75;
+    ::v-deep p {
+      @screen md {
+      font-size: 1.75rem;
+    }
+    }
     ::v-deep a {
       position: relative;
         padding-bottom: 4px;

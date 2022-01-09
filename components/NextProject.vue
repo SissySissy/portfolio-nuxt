@@ -1,5 +1,5 @@
 <template>
-  <div v-if="nextProject" v-inview:class="['active']" class="next-content z-10" @mouseover="isHovering = true" @mouseout="isHovering = false">
+  <div v-if="nextProject" v-inview:class="['active']" class="next-content z-10">
     <div
       class="circle"
       :class="{hovering: isHovering}"
@@ -7,17 +7,17 @@
       <video-component v-if="nextProject.acf.featureImage.mimeType === 'video/mp4'" class="full-image" :my-video="nextProject.acf.featureImage" />
       <image-component v-else :image="nextProject.acf.featureImage" sizes="312px" />
     </div>
-    <div class="z-10">
+    <NuxtLink class="medium-title italic z-10" :to="`/projects/${nextProject.projectId}`">
       <div class="mb-10 overline">
         ( Next )
       </div>
-      <NuxtLink class="medium-title italic" :to="`/projects/${nextProject.projectId}`">
+      <h2 @mouseover="isHovering = true" @mouseout="isHovering = false">
         {{ nextProject.title }}
-      </NuxtLink>
+      </h2>
       <div class="mt-10 overline">
         {{ nextProject.acf.subtitle }}
       </div>
-    </div>
+    </NuxtLink>
   </div>
 </template>
 

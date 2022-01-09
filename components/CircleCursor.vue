@@ -1,6 +1,6 @@
 <template>
   <div v-if="randomImage" aria-hidden="true" class="circle" :class="{ onProject: hoveringOnProject}" :style="transformStyle">
-    <div class="container">
+    <div class="container" :style="{ 'background': projectColor }">
       <div class="overline">
         view case
       </div>
@@ -41,6 +41,9 @@ export default {
     },
     hoveringOnProject () {
       return this.$store.state.hoveringOnProject
+    },
+    projectColor () {
+      return this.$store.state.projectColor
     }
   },
   mounted () {
@@ -111,8 +114,8 @@ export default {
     height: 0px;
 
     .container {
-      width: 300px;
-      height: 300px;
+      width: 250px;
+      height: 250px;
       background: black;
       border-radius: 50%;
       overflow: hidden;
@@ -144,7 +147,6 @@ export default {
       pointer-events: none;
       .container {
          transform: translate(-50%, -50%) scale(.8);
-         background: white;
          position: relative;
          display: flex;
          align-items: center;
