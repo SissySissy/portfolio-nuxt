@@ -2,13 +2,18 @@
   <div :style="{ 'background-color': backgroundColor }" class="centred-image w-full">
     <div class="container">
       <video-component v-if="image.mimeType === 'video/mp4'" :my-video="image" />
-      <image-component v-else :image="image" :sizes="sizes" />
+      <image-component v-else :image="image" :sizes="`(max-width: ${breakpoints.md}) 100vw, min(80vw, 1440px)`" />
     </div>
   </div>
 </template>
 
 <script>
+import ImageComponent from './ImageComponent.vue'
+import VideoComponent from './VideoComponent.vue'
+import tailwindConfig from '~/tailwind.config'
+
 export default {
+  components: { ImageComponent, VideoComponent },
   props: {
     image: {
       type: Object,
@@ -25,12 +30,8 @@ export default {
     }
   },
   computed: {
-    type () {
-      if (this.image.mimeType.includes('image')) {
-        return 'image'
-      } else {
-        return 'video'
-      }
+    breakpoints () {
+      return tailwindConfig.theme.screens
     }
   }
 }
@@ -38,18 +39,20 @@ export default {
 
 <style lang="scss" scoped>
   .centred-image {
-    padding: 10% 0;
+    @screen md {
+      padding: 10% 0;
+    }
     .container {
       position: relative;
-      max-width: 1440px;
-      width: 80%;
-      margin: auto;
-      aspect-ratio: 16/9;
-      @media only screen and (max-width: 800px) {
-       aspect-ratio: 1/1;
-       width: 100%;
-       margin: 0;
-     }
+      aspect-ratio: 1/1;
+      width: 100%;
+      margin: 0;
+      @screen md {
+        max-width: 1440px;
+        width: 80%;
+        margin: auto;
+        aspect-ratio: 16/9;
+      }
       img, video {
         position: absolute;
         top: 0;
@@ -59,8 +62,6 @@ export default {
         object-fit: contain;
       }
     }
-    @media only screen and (max-width: 800px) {
-      padding: 0;
-     }
+
   }
 </style>

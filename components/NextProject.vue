@@ -5,7 +5,7 @@
       :class="{hovering: isHovering}"
     >
       <video-component v-if="nextProject.acf.featureImage.mimeType === 'video/mp4'" class="full-image" :my-video="nextProject.acf.featureImage" />
-      <image-component v-else :image="nextProject.acf.featureImage" />
+      <image-component v-else :image="nextProject.acf.featureImage" sizes="312px" />
     </div>
     <div class="z-10">
       <div class="mb-10 overline">
@@ -25,6 +25,8 @@
 import ImageComponent from './ImageComponent.vue'
 import VideoComponent from './VideoComponent.vue'
 import { NEXT_PROJECT, FIRST_PROJECT } from '~/api/main'
+import tailwindConfig from '~/tailwind.config'
+
 export default {
   components: { ImageComponent, VideoComponent },
   props: {
@@ -38,6 +40,9 @@ export default {
       nextProject: null,
       isHovering: false
     }
+  },
+  breakpoints () {
+    return tailwindConfig.theme.screens
   },
   async mounted () {
     const cursor = this.cursor

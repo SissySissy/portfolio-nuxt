@@ -23,7 +23,7 @@ export default {
   },
   computed: {
     preview () {
-      const sm = this.image.mediaDetails.sizes.find(size => size.name === 'medium')
+      const sm = this.image.mediaDetails.sizes.find(size => size.name === 'small')
       return sm
     }
   },

@@ -12,14 +12,14 @@
       </div>
       <div class="wrapper-grid-item" @mouseover="$store.commit('toggleHoveringOnProject')" @mouseout="$store.commit('toggleHoveringOnProject')">
         <video-component v-if="project.acf.featureImage.mimeType === 'video/mp4'" v-inview:class="['active']" :my-video="project.acf.featureImage" />
-        <image-component v-else v-inview:class="['active']" :image="project.acf.featureImage" :sizes="`(max-width: ${bp['lg']}) 100vw, (max-width: ${bp['2xl']}) 65vw, min(50vw, 1200px)`" />
+        <image-component v-else v-inview:class="['active']" :image="project.acf.featureImage" :sizes="`(max-width: ${breakpoints.md}) 100vw, 50vw`" />
       </div>
     </NuxtLink>
   </div>
 </template>
 
 <script>
-import twConfig from '~/tailwind.config'
+import tailwindConfig from '~/tailwind.config'
 
 export default {
   props: {
@@ -30,13 +30,11 @@ export default {
   },
   computed: {
     bp () {
-      return twConfig.theme.screens
+      return tailwindConfig.theme.screens
+    },
+    breakpoints () {
+      return tailwindConfig.theme.screens
     }
-  },
-  mounted () {
-    console.log(this.projects)
-  },
-  methods: {
   }
 }
 </script>
