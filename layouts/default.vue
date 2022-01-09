@@ -1,8 +1,8 @@
 <template>
   <div class="wrapper" :style="{ 'background': pageBackgroundColor }">
     <main-header :color="pageBackgroundColor" />
-    <nuxt />
-    <main-footer />
+    <nuxt :aria-hidden="menuIsExpanded" />
+    <main-footer :aria-hidden="menuIsExpanded" />
   </div>
 </template>
 
@@ -17,6 +17,9 @@ export default {
     },
     pageNoScroll () {
       return this.$store.state.pageNoScroll
+    },
+    menuIsExpanded () {
+      return this.$store.state.menuIsExpanded
     }
   },
   watch: {

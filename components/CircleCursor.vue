@@ -1,5 +1,5 @@
 <template>
-  <div v-if="randomImage" class="circle" :class="{ onProject: hoveringOnProject}" :style="transformStyle">
+  <div v-if="randomImage" aria-hidden="true" class="circle" :class="{ onProject: hoveringOnProject}" :style="transformStyle">
     <div class="container">
       <div class="overline">
         view case

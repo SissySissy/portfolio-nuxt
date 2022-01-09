@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <main>
     <my-hero :project="project" />
     <full-image :image="project.acf.featureImage" :slider-color="project.acf.backgroundColor" />
     <intro-project :project="project" />
@@ -11,7 +11,7 @@
       <tiled-block v-else-if="item.fieldGroupName === 'Project_Acf_FlexibleContent_TiledMockups'" :image="item.image" :direction="item.direction" :background-color="item.color" />
     </div>
     <next-project :cursor="cursor" />
-  </div>
+  </main>
 </template>
 
 <script>

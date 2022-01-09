@@ -17,6 +17,13 @@ body {
     }
 }
 
+main {
+    visibility: visible;
+}
+main[aria-hidden=true] {
+    visibility: hidden;
+}
+
 .arrow { 
     width: 100px;
     height: 100px;

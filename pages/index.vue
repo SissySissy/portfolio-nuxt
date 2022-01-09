@@ -1,5 +1,5 @@
 <template>
-  <div class=" text-white">
+  <main class=" text-white">
     <div class="hero z-20 px-10">
       <h1 class="project-title italic">
         Portfolio 2022
@@ -7,7 +7,7 @@
     </div>
     <project-grid :projects="projects" />
     <circle-cursor :images="images" />
-  </div>
+  </main>
 </template>
 
 <script>
