@@ -1,5 +1,5 @@
 <template>
-  <div class="wrapper">
+  <div v-if="image" class="wrapper">
     <div class="image-container" :style="{ 'background': sliderColor }">
       <video-component v-if="image.mimeType === 'video/mp4'" class="full-image" :my-video="image" />
       <image-component v-else class="full-image" :image="image" :sizes="sizes" />

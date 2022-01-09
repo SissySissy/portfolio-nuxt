@@ -111,8 +111,8 @@ export default {
     height: 0px;
 
     .container {
-      width: 300px;
-      height: 300px;
+      width: 250px;
+      height: 250px;
       background: black;
       border-radius: 50%;
       overflow: hidden;
@@ -144,7 +144,7 @@ export default {
       pointer-events: none;
       .container {
          transform: translate(-50%, -50%) scale(.8);
-         background: white;
+         background: #ffffff;
          position: relative;
          display: flex;
          align-items: center;

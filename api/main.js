@@ -40,7 +40,6 @@ const NEXT_PROJECT = gql`
           projectId
           title
           acf {
-            link
             subtitle
             featureImage {
               mediaItemUrl
@@ -74,7 +73,6 @@ query MyQuery {
         projectId
         title
         acf {
-          link
           subtitle
           featureImage {
             mediaItemUrl
@@ -174,7 +172,14 @@ const SINGLE_PROJECT = gql`
             category
             subtitle
             client
-            link
+            links {
+              icon
+              link {
+                title
+                url
+                target
+              }
+            }
             techList {
               techItem
             }

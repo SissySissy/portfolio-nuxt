@@ -5,7 +5,7 @@
         <span class="font-serif italic text-lg">
           {{ project.title }}
         </span>
-        <span class="p-1"> — </span>
+        <span class="overline">—</span>
         <span v-for="(category, index) in project.acf.category" :key="index" class="overline">
           {{ category }}<span v-if="index + 1 < project.acf.category.length">, </span>
         </span>
@@ -41,6 +41,7 @@ export default {
 
 <style lang="scss" scoped>
 $row: 5vw;
+$mobilerow: 12;
 
 .projects-grid {
     padding: 0;
@@ -77,7 +78,7 @@ $row: 5vw;
     .grid-item:nth-child(5n + 1) {
       grid-column: span 6;
       margin-bottom: 52px;
-      grid-row: span 10;
+      grid-row: span $mobilerow;
 
       @screen md {
         grid-column: 1 / span 3;
@@ -89,7 +90,7 @@ $row: 5vw;
     .grid-item:nth-child(5n + 2) {
       grid-column: span 6;
       margin-bottom: 52px;
-      grid-row: span 10;
+      grid-row: span $mobilerow;
       margin-top: 0;
 
       @screen md {
@@ -103,7 +104,7 @@ $row: 5vw;
     .grid-item:nth-child(5n + 3) {
       grid-column: span 6;
       margin-bottom: 52px;
-      grid-row: span 10;
+      grid-row: span $mobilerow;
       margin-top: 0;
 
       @screen md {
@@ -116,7 +117,7 @@ $row: 5vw;
     .grid-item:nth-child(5n + 4) {
       grid-column: span 6;
       margin-bottom: 52px;
-      grid-row: span 10;
+      grid-row: span $mobilerow;
       margin-top: 0;
 
       @screen md {
@@ -131,7 +132,7 @@ $row: 5vw;
       grid-column: span 6;
       margin-bottom: 52px;
       margin-top: 0;
-      grid-row: span 10;
+      grid-row: span $mobilerow;
 
       @screen md {
         grid-column: 5 / span 2;
@@ -151,6 +152,7 @@ $row: 5vw;
     .caption {
       position: absolute;
       top: -35px;
+      letter-spacing: .12;
 
       .overline {
         font-size: .8rem;
