@@ -23,9 +23,19 @@ export default {
     const imagesRes = await $graphql.default.request(IMAGES_ARRAY)
     const images = imagesRes?.page?.acfAbout?.heroFiles || []
 
+    const meta = {
+      title: 'Silvia Monti - Portfolio 2022',
+      meta: [
+        { hid: 'description', name: 'description', content: '' },
+        { property: 'og:type', content: 'website' },
+        { property: 'og:title', content: 'Silvia Monti - Portfolio 2022' }
+      ]
+    }
+
     return {
       projects,
-      images
+      images,
+      meta
     }
   },
   head () {

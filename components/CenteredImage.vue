@@ -1,6 +1,6 @@
 <template>
   <div :style="{ 'background-color': backgroundColor }" class="centred-image w-full">
-    <div class="container">
+    <div class="image-container">
       <video-component v-if="image.mimeType === 'video/mp4'" :my-video="image" />
       <image-component v-else :image="image" :sizes="`(max-width: ${breakpoints.md}) 100vw, min(80vw, 1440px)`" />
     </div>
@@ -39,29 +39,28 @@ export default {
 
 <style lang="scss" scoped>
   .centred-image {
-    @screen md {
-      padding: 10% 0;
-    }
-    .container {
-      position: relative;
-      aspect-ratio: 1/1;
+    max-height: 95vh;
+    overflow: hidden;
+    display: flex;
+    .image-container {
       width: 100%;
-      margin: 0;
-      @screen md {
-        max-width: 1440px;
-        width: 80%;
-        margin: auto;
+      position: relative;
+      aspect-ratio: 5/4;
+      @screen lg {
         aspect-ratio: 16/9;
       }
-      img, video {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
+    }
+    img, video {
+      object-fit: cover;
+      @screen md {
+        width: 80%;
+        margin: auto;
+        max-width: 1440px;
         object-fit: contain;
       }
+       @screen lg {
+        width: 60%;
+      }
     }
-
   }
 </style>

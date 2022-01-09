@@ -33,11 +33,10 @@ export default {
 <style lang="scss" scoped>
   .image-wrap {
     width: 100%;
-    aspect-ratio: 1/1;
+    aspect-ratio: 5/4;
     max-height: 95vh;
     position: relative;
-
-    @screen md {
+    @screen lg {
       width: 50%;
       aspect-ratio: 8/9;
     }
@@ -46,13 +45,20 @@ export default {
         padding:0;
         width: 100%;
         margin: 0;
-
-        @screen md {
+        @screen lg {
           padding: 15% 0;
           width: 70%;
           margin: auto;
         }
       }
     }
+  }
+  .two-images {
+    width: 100%;
+    height: 56.25%;
+    display: flex;
+    position: relative;
+    height: auto;
+    flex-wrap: wrap;
   }
 </style>

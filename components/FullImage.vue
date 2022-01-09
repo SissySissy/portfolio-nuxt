@@ -50,11 +50,11 @@ export default {
     overflow: hidden;
   }
   .image-container {
-    width: 100%;
-    position: relative;
-    aspect-ratio: 16/9;
-    @media only screen and (max-width: 800px) {
-      aspect-ratio: 1/1;
+    aspect-ratio: 5/4;
+    @screen md {
+      width: 100%;
+      position: relative;
+      aspect-ratio: 16/9;
     }
   }
 </style>
