@@ -8,16 +8,17 @@
         {{ project.acf.client }}
       </div>
       <div class="font-serif mb-10 lg:mb-0" v-html="project.content" />
-      <div v-if="project.acf.links" class="mt-0 mb-14 lg:mt-10 lg:mb-0">
+      <div v-if="project.acf.links" class="mt-0 mb-14 w-fit lg:mt-10 lg:mb-0">
         <a
           v-for="item of project.acf.links"
           :key="item.link.title"
           :href="item.link.url"
           :target="item.link.target"
           rel="noopener noreferrer"
-          class="link mr-6 overline"
+          class="link mr-6 overline block mb-6 lg:inline "
         >
           {{ item.link.title }}
+          <my-icon v-if="item.link.target === '_blank'" name="outside-link" />
         </a>
       </div>
     </div>
@@ -30,7 +31,9 @@
 </template>
 
 <script>
+import MyIcon from '~/components/MyIcon.vue'
 export default {
+  components: { MyIcon },
   props: {
     project: {
       type: Object,
@@ -46,10 +49,21 @@ export default {
 <style lang="scss">
   .link {
     font-size: 0.75rem;
+    width: fit-content;
+
+    svg {
+      transition: transform 300ms ease;
+      margin-bottom: 2px;
+    }
+    &:hover{
+      svg {
+        transform: translate(2px, -2px);
+      }
+    }
   }
   .headline {
     font-size: clamp(1.75rem, 4vw, 3rem);
-    line-height: 1.06;
+    line-height: 1.25;
     letter-spacing: 0.025rem;
   }
   .intro{
