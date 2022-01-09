@@ -9,6 +9,7 @@ const ALL_PROJECTS = gql`
         title
         acf {
           subtitle
+          interactiveColor
           category
           featureImage {
             mediaItemUrl
@@ -166,9 +167,11 @@ const SINGLE_PROJECT = gql`
         node {
           id
           title
+          excerpt(format: RAW)
           content(format: RENDERED)
           acf {
             backgroundColor
+            interactiveColor
             category
             subtitle
             client

@@ -10,7 +10,7 @@
           {{ category }}<span v-if="index + 1 < project.acf.category.length">, </span>
         </span>
       </div>
-      <div class="wrapper-grid-item" @mouseover="$store.commit('toggleHoveringOnProject')" @mouseout="$store.commit('toggleHoveringOnProject')">
+      <div class="wrapper-grid-item" @mouseover="$store.commit('toggleHoveringOnProject', project.acf.interactiveColor)" @mouseout="$store.commit('toggleHoveringOnProject')">
         <video-component v-if="project.acf.featureImage.mimeType === 'video/mp4'" v-inview:class="['active']" :my-video="project.acf.featureImage" />
         <image-component v-else v-inview:class="['active']" :image="project.acf.featureImage" :sizes="`(max-width: ${breakpoints.md}) 100vw, 50vw`" />
       </div>

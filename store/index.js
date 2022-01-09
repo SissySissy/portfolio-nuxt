@@ -2,7 +2,8 @@ export const state = () => ({
   pageBackgroundColor: '#222222',
   pageNoScroll: false,
   hoveringOnProject: false,
-  menuIsExpanded: false
+  menuIsExpanded: false,
+  projectColor: '#fff'
 })
 
 export const mutations = {
@@ -14,6 +15,7 @@ export const mutations = {
   },
   toggleHoveringOnProject (state, payload) {
     state.hoveringOnProject = !state.hoveringOnProject
+    state.projectColor = payload
   },
   toggleMenuIsExpanded (state) {
     state.menuIsExpanded = !state.menuIsExpanded

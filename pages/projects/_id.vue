@@ -35,10 +35,25 @@ export default {
     const project = res?.projects?.edges?.[0]?.node || null
     const cursor = res?.projects?.edges?.[0]?.cursor || null
 
+    console.log(project.excerpt)
+
+    const meta = {
+      title: project.title,
+      meta: [
+        { hid: 'description', name: 'description', content: project?.excerpt || '' },
+        { property: 'og:type', content: 'website' },
+        { property: 'og:title', content: `${project.title}` }
+      ]
+    }
+
     return {
       project,
-      cursor
+      cursor,
+      meta
     }
+  },
+  head () {
+    return this.meta
   },
   mounted () {
     // console.log(this.project)
