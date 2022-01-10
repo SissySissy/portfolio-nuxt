@@ -125,9 +125,12 @@ export default {
     letter-spacing: .05rem;
     line-height: 1.75;
     ::v-deep p {
-      @screen md {
+      @screen lg {
+      font-size: 1.45rem;
+      }
+      @screen 2xl {
       font-size: 1.75rem;
-    }
+      }
     }
     ::v-deep a {
       position: relative;
