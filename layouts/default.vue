@@ -1,5 +1,12 @@
 <template>
-  <div class="wrapper" :style="{ 'background': pageBackgroundColor }">
+  <div
+    class="wrapper"
+    :style="{
+      'background': pageBackgroundColor,
+      '--highlight-color': highlightColor
+    }"
+    @mousedown="changeParagraphColor"
+  >
     <main-header :color="pageBackgroundColor" />
     <nuxt :aria-hidden="menuIsExpanded" />
     <main-footer :aria-hidden="menuIsExpanded" />
@@ -11,6 +18,13 @@ import MainFooter from '~/components/MainFooter.vue'
 import MainHeader from '~/components/MainHeader.vue'
 export default {
   components: { MainHeader, MainFooter },
+  data: () => {
+    return {
+      changeParagraphColorIndex: 0,
+      ParagraphPalette: ['#003F34', '#566F72', '#FF5F5F', '#3F5996', '#8CC2AF', '#DDB4EC'],
+      highlightColor: '#FF5F5F'
+    }
+  },
   computed: {
     pageBackgroundColor () {
       return this.$store.state.pageBackgroundColor
@@ -29,6 +43,19 @@ export default {
       } else {
         document.body.classList.remove('no-scroll')
       }
+    }
+  },
+  mounted () {
+    this.changeParagraphColor()
+  },
+  methods: {
+    changeParagraphColor () {
+      if (this.changeParagraphColorIndex === this.ParagraphPalette.length) {
+        this.changeParagraphColorIndex = 0
+      }
+      // for each click on the page change color of the highlight
+      this.highlightColor = this.ParagraphPalette[this.changeParagraphColorIndex]
+      this.changeParagraphColorIndex++
     }
   }
 }
@@ -49,4 +76,9 @@ export default {
   .page-leave-to {
     opacity: 0;
   }
+
+  ::selection {
+    background: var(--highlight-color);
+  }
+
 </style>
