@@ -13,6 +13,18 @@ export default {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+    ],
+    script: [
+      {
+        src: 'https://umami.morme.ch/umami.js',
+        async: true,
+        defer: true,
+        body: true,
+        'data-website-id': '1f284ecd-5fb0-4f5f-9a68-9d7c6d517777',
+        'data-domains': 'silviamonti.ch',
+        'data-do-not-track': 'true',
+        'data-cache': 'true'
+      }
     ]
   },
 
