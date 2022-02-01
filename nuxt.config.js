@@ -20,10 +20,10 @@ export default {
         async: true,
         defer: true,
         body: true,
-        'data-website-id': '1f284ecd-5fb0-4f5f-9a68-9d7c6d517777',
-        'data-domains': 'silviamonti.ch',
-        'data-do-not-track': 'true',
-        'data-cache': 'true'
+        'data-website-id': process.env.UMAMI_ID,
+        'data-domains': process.env.UMAMI_DOMAIN,
+        'data-do-not-track': process.env.UMAMI_TRACK,
+        'data-cache': process.env.UMAMI_CACHE
       }
     ]
   },
