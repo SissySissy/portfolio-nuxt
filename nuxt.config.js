@@ -1,5 +1,13 @@
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
+  publicRuntimeConfig: {
+    umami: {
+      scriptUrl: process.env.UMAMI_SCRIPT_URL,
+      websiteId: process.env.UMAMI_ID,
+      domains: process.env.UMAMI_DOMAIN,
+      cache: true
+    }
+  },
   head: {
     title: 'Silvia Monti — Design & Code',
     htmlAttrs: {
@@ -13,18 +21,6 @@ export default {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
-    ],
-    script: [
-      {
-        src: 'https://umami.morme.ch/umami.js',
-        async: true,
-        defer: true,
-        body: true,
-        'data-website-id': '1f284ecd-5fb0-4f5f-9a68-9d7c6d517777',
-        'data-domains': 'silviamonti.ch',
-        'data-do-not-track': 'true',
-        'data-cache': 'true'
-      }
     ]
   },
 
@@ -35,7 +31,8 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    '~/plugins/vueinview.js'
+    '~/plugins/vueinview.js',
+    { src: '~/plugins/Umami.js', ssr: false }
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
